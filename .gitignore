@@ -1,0 +1,10 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# temp/render/export
+*.tmp
+*.log
+
+# local media inputs
+assets/motion/input*
