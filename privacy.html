@@ -4,29 +4,34 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy Notice — TaaPlay</title>
-  <meta name="description" content="How TaaPlay processes the personal information you submit on the early-access waitlist page (POPIA-aligned)." />
+
+  <!-- Meta / social -->
+  <meta name="description" content="TaaPlay Privacy Notice for the early-access waitlist (POPIA-aligned)." />
   <meta property="og:title" content="Privacy Notice — TaaPlay" />
-  <meta property="og:description" content="How TaaPlay processes the personal information you submit on the early-access waitlist page (POPIA-aligned)." />
+  <meta property="og:description" content="How TaaPlay processes your information for the early-access waitlist." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/brand/taaplay-og.png" />
   <meta property="og:image:alt" content="TaaPlay brand preview in deep teal, lime, orange and soft purple" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0E7490" />
-  <link rel="preload" as="image" href="assets/brand/taaplay-logo-horiz.png" imagesrcset="assets/brand/taaplay-logo-horiz@2x.png 2x">
-  <link rel="preload" as="image" href="assets/brand/taaplay-mark.png">
   <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <link rel="mask-icon" href="assets/brand/favicon.svg" color="#0E7490" />
 
   <style>
-    /* ===== Brand & UI tokens (match landing page) ===== */
+    /* ========================
+       TaaPlay Theme Tokens
+       ======================== */
     :root{
-      /* Dark frame */
-      --surface-900:#0B0F19; --surface-800:#111827; --surface-700:#0f172a;
-      --border-700:#1F2937;
-      --text-100:#E5E7EB; --text-300:#CBD5E1; --text-500:#94A3B8;
-      /* Brand palette */
-      --brand-primary:#0E7490;           /* deep teal */
+      /* Dark UI */
+      --surface-900:#0B0F19;  /* frame/background */
+      --surface-800:#111827;  /* cards/sections */
+      --border-700:#1F2937;   /* borders */
+      --text-100:#E5E7EB;     /* main text */
+      --text-300:#CBD5E1;     /* secondary text */
+      --text-500:#94A3B8;     /* muted */
+      /* Brand */
+      --brand-primary:#0E7490; 
       --brand-primary-strong:#0A5E72;
       --brand-lime:#A3E635;
       --brand-orange:#FF6B35;
@@ -37,147 +42,149 @@
     }
 
     html,body{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Noto Sans","Liberation Sans", sans-serif;
-      line-height: 1.65;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+      line-height:1.6;
+      color:var(--text-100);
       background:#000;
-      color: var(--text-100);
     }
 
-    a{ color: var(--brand-primary-strong); }
-    a:hover{ color: var(--brand-lime); text-decoration: underline; text-underline-offset: 2px; }
-    a:visited{ color: var(--brand-purple); }
-    a:focus, button:focus{ outline: 3px dotted var(--brand-primary-strong); outline-offset: 2px; }
+    a{ color:var(--brand-primary); text-decoration:none }
+    a:hover{ color:var(--brand-lime); text-decoration:underline; text-underline-offset:2px }
+    a:focus, button:focus{ outline:3px dotted var(--brand-primary-strong); outline-offset:2px }
 
-    .visually-hidden{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .visually-hidden{
+      position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
+    }
 
-    /* ===== Frame & header ===== */
+    /* Shell / frame */
     .frame{
-      background: var(--surface-900);
-      border: 1.5px solid var(--border-700);
-      border-radius: 24px;
-      width: min(1100px, 96vw);
-      margin: clamp(8px, 2.5vw, 28px) auto;
-      box-shadow: 0 10px 40px rgba(0,0,0,.45);
-      overflow: hidden;
+      background:var(--surface-900);
+      color:var(--text-100);
+      border:1.5px solid var(--border-700);
+      border-radius:24px;
+      width:min(1200px,96vw);
+      margin:clamp(8px,2.5vw,28px) auto;
+      box-shadow:0 10px 40px rgba(0,0,0,.45);
     }
+
+    .container{ width:min(1120px,92vw); margin-inline:auto }
+    .section{ padding:clamp(1.25rem,1.5vw + .75rem,2rem) 0 }
+
+    /* Header */
     header{
-      position: sticky; top: 0; z-index: 20;
-      background: var(--surface-900);
-      border-bottom: 1px solid var(--border-700);
-      padding: .75rem 0;
+      background:var(--surface-900);
+      position:sticky; top:0; z-index:20;
+      border-bottom:1px solid var(--border-700);
+      border-top-left-radius:24px; border-top-right-radius:24px;
     }
-    .container{ width: min(1000px, 92vw); margin-inline: auto; }
-    .nav{ display:flex; align-items:center; justify-content:space-between; gap:1rem; }
-    .brand{ display:flex; align-items:center; gap:.625rem; text-decoration:none; }
-    .brand-logo{ display:flex; align-items:center; background:none; }
-    .brand-logo img{ height:40px; width:auto; border-radius:0; display:block; }
-    .brand-text-fallback{ display:none; font-weight:800; letter-spacing:.2px; color:var(--text-100); font-size:1.15rem; }
-    .brand-name{ position:absolute; left:-9999px; }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.875rem 0 }
+    .brand{ display:flex; align-items:center; gap:.625rem; text-decoration:none }
+    .brand-logo{ display:flex; align-items:center; background:none }
+    .brand-logo img{ height:40px; width:auto; border-radius:0; display:block }
+    .brand-text-fallback{ display:none; font-weight:800; letter-spacing:.2px; color:var(--text-100); font-size:1.15rem }
 
-    .backlink{ color: var(--text-300); font-weight:600; }
-    .backlink:hover{ color: var(--brand-lime); }
+    .back-link{ color:var(--text-300); font-weight:600 }
+    .back-link:hover{ color:var(--brand-lime) }
 
-    /* ===== Hero / page title ===== */
-    .hero{ padding: clamp(1.25rem, 1.5vw + .75rem, 2rem) 0 0; }
-    .eyebrow{ color: var(--brand-lime); font-weight:800; font-size:.9rem; text-transform:uppercase; letter-spacing:.16em; }
-    h1{
-      font-size: clamp(1.8rem, 2.2vw + 1rem, 2.6rem);
-      line-height: 1.15;
-      margin: .35rem 0 .25rem;
-      background: linear-gradient(90deg, var(--brand-lime) 0%, var(--brand-orange) 45%, var(--brand-purple) 85%);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    /* Hero */
+    .hero{
+      display:grid; gap:.5rem; text-align:center; justify-items:center;
+      padding:clamp(1.5rem,2vw + 1rem,2.5rem) 0 0;
     }
-    .meta{ color: var(--text-500); font-size:.95rem; }
-
-    /* ===== Layout: TOC + content ===== */
-    .main{
-      display:grid; gap: 1.25rem;
-      grid-template-columns: 1fr;
-      padding: 1rem 0 2rem;
+    .eyebrow{
+      color:var(--brand-lime); font-weight:800; font-size:.95rem;
+      text-transform:uppercase; letter-spacing:.18em
     }
-    @media (min-width: 980px){
-      .main{ grid-template-columns: 280px 1fr; align-items:start; }
+    .h1{
+      font-size:clamp(1.85rem,2.4vw + 1rem,2.6rem);
+      line-height:1.15; margin:.25rem 0 .25rem; color:var(--text-100)
+    }
+    .gradient-text{
+      background:linear-gradient(90deg,var(--brand-lime) 0%,var(--brand-orange) 35%,var(--brand-purple) 70%,var(--brand-lime) 100%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+    }
+    @media (prefers-contrast:more){ .gradient-text{ -webkit-text-fill-color:#fff; color:#fff; background:none } }
+    @media (forced-colors:active){ .gradient-text{ -webkit-text-fill-color:ButtonText; color:ButtonText; background:none } }
+
+    .lede{ color:var(--text-300); max-width:70ch; margin:0 auto .75rem }
+
+    /* Layout: sidebar TOC + content */
+    .grid{
+      display:grid; gap:1.25rem;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:980px){
+      .grid{ grid-template-columns: minmax(220px, 320px) minmax(0,1fr) }
     }
 
-    /* TOC */
+    /* TOC card */
     .toc{
-      position: sticky; top: 70px;
-      background: var(--surface-800);
-      border: 1px solid var(--border-700);
-      border-radius: 16px;
-      padding: .75rem .9rem;
-      max-height: calc(100vh - 100px);
-      overflow: auto;
+      background:var(--surface-800);
+      border:1px solid var(--border-700);
+      border-radius:16px;
+      padding:1rem;
+      position:sticky; top:calc(56px + 12px);
+      max-height:calc(100vh - 88px); overflow:auto;
     }
     .toc h2{
-      margin: .25rem 0 .25rem;
-      font-size: 1rem;
-      color: var(--text-100);
+      margin:.25rem 0 .5rem; font-size:1rem; color:var(--text-100);
+      text-align:left
     }
     .toc ol{
-      margin: .5rem 0 0; padding: 0 0 0 1rem;
-      display: grid; gap: .35rem;
-      color: var(--text-300);
-      font-size: .98rem;
+      margin:0; padding-left:1.25rem; color:var(--text-300);
+      /* IMPORTANT: let the list render numbers; no custom counters here to avoid double numbering */
+      list-style:decimal;
     }
-    .toc a{ text-decoration:none; color: var(--text-300); }
-    .toc a:hover{ color: var(--brand-lime); text-decoration: underline; }
+    .toc li{ margin:.25rem 0 }
+    .toc a{ color:var(--text-300); text-decoration:none }
+    .toc a:hover{ color:var(--brand-lime); text-decoration:underline; text-underline-offset:2px }
 
-    /* Content card */
-    .doc{
-      background: var(--surface-800);
-      border: 1px solid var(--border-700);
-      border-radius: 16px;
-      padding: clamp(1rem, 1.25vw + .5rem, 1.5rem);
+    /* Policy content */
+    .policy{
+      display:grid; gap:1rem;
     }
-    .doc h2{
-      font-size: clamp(1.2rem, 1.5vw + .8rem, 1.6rem);
-      line-height: 1.25;
-      margin: 1.25rem 0 .5rem;
-      color: var(--text-100);
-      border-left: 3px solid var(--brand-primary);
-      padding-left: .6rem;
+    .policy-section{
+      background:var(--surface-800);
+      border:1px solid var(--border-700);
+      border-radius:16px;
+      padding:1rem 1.25rem;
     }
-    .doc p{ margin: .5rem 0; color: var(--text-300); }
-    .doc ul{ margin: .35rem 0 .75rem 1.25rem; }
-    .doc li{ margin: .25rem 0; }
+    .policy-section h3{
+      display:flex; align-items:center; gap:.5rem;
+      margin:.25rem 0 .25rem; font-size:1.15rem; color:var(--text-100);
+      border-left:3px solid var(--brand-primary); padding-left:.5rem;
+    }
+    .meta-row{
+      display:flex; gap:.75rem; flex-wrap:wrap; justify-content:center;
+      color:var(--text-500); font-size:.95rem
+    }
+    .kicker{ color:var(--text-500); font-size:.95rem; margin:0 0 .25rem }
 
-    /* Callouts */
-    .callout{
-      margin: .75rem 0;
-      border: 1px solid var(--border-700);
-      border-radius: 12px;
-      padding: .75rem .9rem;
-      background:
-        linear-gradient(180deg, rgba(14,116,144,.14), rgba(14,116,144,.06)) padding-box,
-        conic-gradient(from 30deg,
-          rgba(163,230,53,.35),
-          rgba(255,107,53,.35),
-          rgba(167,139,250,.35),
-          rgba(163,230,53,.35)
-        ) border-box;
-      border: 2px solid transparent;
-    }
-    .callout strong{ color: var(--neutral-light); }
+    .policy p{ margin:.25rem 0 .5rem; color:var(--text-300) }
+    .policy ul{ margin:.25rem 0 .5rem 1.25rem; color:var(--text-300) }
+    .policy li{ margin:.2rem 0 }
 
-    /* Footnote-ish sources */
-    .source{ color: var(--text-500); font-style: italic; }
+    .note{
+      border-left:3px solid var(--brand-purple);
+      padding:.5rem .75rem; background:rgba(167,139,250,.08);
+      border-radius:.5rem; color:var(--text-300)
+    }
 
     /* Footer */
     footer{
-      border-top: 1px solid var(--border-700);
-      color: var(--text-300);
-      padding: 1rem 0;
-      text-align:center;
-      background: var(--surface-900);
+      border-top:1px solid var(--border-700);
+      background:var(--surface-900); color:var(--text-300)
     }
-
-    /* Focused section highlight on hash navigation */
-    :target{ scroll-margin-top: 80px; }
+    .foot{
+      display:flex; align-items:center; gap:.5rem; justify-content:center;
+      padding:1rem 0; flex-wrap:wrap
+    }
+    .foot [aria-hidden="true"]{ opacity:.55; color:var(--text-500) }
   </style>
 
   <script>
-    // Logo fallback (same pattern as index)
+    // Wordmark fallback (same logic as index.html)
     (function(){
       window.__logoFallback = function(img){
         if(!img) return;
@@ -187,193 +194,183 @@
           img.onerror = function(){ window.__logoFallback && __logoFallback(img); };
           img.removeAttribute('srcset');
           img.src = 'assets/brand/taaplay-mark.png';
-          img.style.height = '36px';
-          img.style.width  = '36px';
-          img.style.borderRadius = '10px';
-        }else{
+          img.style.height = '36px'; img.style.width = '36px'; img.style.borderRadius='10px';
+        } else {
           img.style.display = 'none';
-          var t = img.parentElement && img.parentElement.querySelector('.brand-text-fallback');
-          if(t) t.style.display = 'inline-block';
+          try{
+            var t = img.parentElement && img.parentElement.querySelector('.brand-text-fallback');
+            if(t){ t.style.display = 'inline-block'; }
+          }catch(_){}
         }
       };
     })();
   </script>
 </head>
 <body>
-  <a class="visually-hidden" href="#content">Skip to content</a>
+  <a href="#content" class="visually-hidden">Skip to content</a>
+
   <div class="frame">
+    <!-- Header -->
     <header>
       <div class="container nav">
         <a class="brand" href="index.html" aria-label="Back to TaaPlay home">
           <div class="brand-logo">
             <img src="assets/brand/taaplay-logo-horiz.png"
                  srcset="assets/brand/taaplay-logo-horiz@2x.png 2x"
-                 alt="TaaPlay"
-                 loading="eager"
-                 decoding="async"
+                 alt="TaaPlay" loading="eager" decoding="async"
                  onerror="window.__logoFallback&&__logoFallback(this)" />
             <span class="brand-text-fallback" aria-hidden="true">TaaPlay</span>
           </div>
-          <span class="brand-name">TaaPlay</span>
+          <span class="visually-hidden">Back to home</span>
         </a>
-        <a class="backlink" href="index.html">← Back to site</a>
-      </div>
-      <div class="container hero">
-        <div class="eyebrow">Privacy Notice</div>
-        <h1>How we handle your information</h1>
-        <div class="meta">Effective date: <strong>14 August 2025</strong> • Contact: <a href="mailto:hello@taaplay.com">hello@taaplay.com</a></div>
+        <a class="back-link" href="index.html">← Back to home</a>
       </div>
     </header>
 
-    <div class="container main" id="content">
-      <!-- TOC -->
-      <nav class="toc" aria-label="Table of contents">
-        <h2>On this page</h2>
-        <ol>
-          <li><a href="#s1">1) Who we are</a></li>
-          <li><a href="#s2">2) Scope</a></li>
-          <li><a href="#s3">3) What we collect</a></li>
-          <li><a href="#s4">4) Why we process</a></li>
-          <li><a href="#s5">5) Lawful basis (POPIA §11)</a></li>
-          <li><a href="#s6">6) Direct marketing (POPIA §69)</a></li>
-          <li><a href="#s7">7) Processors</a></li>
-          <li><a href="#s8">8) Cookies & analytics</a></li>
-          <li><a href="#s9">9) Cross-border transfers (POPIA §72)</a></li>
-          <li><a href="#s10">10) Security</a></li>
-          <li><a href="#s11">11) Retention</a></li>
-          <li><a href="#s12">12) Your rights</a></li>
-          <li><a href="#s13">13) Children’s privacy</a></li>
-          <li><a href="#s14">14) Updates</a></li>
-        </ol>
-      </nav>
+    <!-- Hero -->
+    <section class="hero container" id="top">
+      <div class="eyebrow">Privacy</div>
+      <h1 class="h1 gradient-text">Privacy Notice — TaaPlay</h1>
+      <p class="lede">How we process your information on the early-access waitlist. This notice is POPIA-aligned and focused on the landing page &amp; form.</p>
+      <div class="meta-row">
+        <span><strong>Effective date:</strong> 14 August 2025</span>
+        <span aria-hidden="true">•</span>
+        <span><strong>Contact:</strong> <a href="mailto:hello@taaplay.com">hello@taaplay.com</a></span>
+      </div>
+    </section>
 
-      <!-- Document -->
-      <article class="doc">
-        <section id="s1">
-          <h2>1) Who we are</h2>
-          <p>“TaaPlay” (“we”, “us”) is developing an early-learning platform for South African families and ECD practitioners. For the early-access waitlist, TaaPlay is the responsible party under the Protection of Personal Information Act, 2013 (POPIA). Our contact email is above.</p>
-        </section>
+    <!-- Body -->
+    <section class="section">
+      <div class="container grid" id="content">
+        <!-- TOC (numbers once only via <ol>) -->
+        <nav class="toc" aria-label="Table of contents">
+          <h2>Contents</h2>
+          <ol>
+            <li><a href="#sec1">Who we are</a></li>
+            <li><a href="#sec2">Scope</a></li>
+            <li><a href="#sec3">What we collect on this page</a></li>
+            <li><a href="#sec4">Why we process your information (purpose)</a></li>
+            <li><a href="#sec5">Our lawful justification under POPIA (Section 11)</a></li>
+            <li><a href="#sec6">Direct marketing rules (Section 69)</a></li>
+            <li><a href="#sec7">What we share and with whom (processors)</a></li>
+            <li><a href="#sec8">Cookies and analytics</a></li>
+            <li><a href="#sec9">Cross-border transfers (Section 72)</a></li>
+            <li><a href="#sec10">Security</a></li>
+            <li><a href="#sec11">Retention</a></li>
+            <li><a href="#sec12">Your rights</a></li>
+            <li><a href="#sec13">Children’s privacy</a></li>
+            <li><a href="#sec14">Updates to this notice</a></li>
+          </ol>
+        </nav>
 
-        <section id="s2">
-          <h2>2) Scope</h2>
-          <p>This notice applies to the early-access landing page and waitlist form and describes how we process the personal information you submit there. It does not cover future in-app features; those will have an expanded notice.</p>
-        </section>
+        <!-- Content -->
+        <div class="policy">
+          <article id="sec1" class="policy-section">
+            <h3>1) Who we are</h3>
+            <p>“TaaPlay” (“we”, “us”) is developing an early-learning platform for South African families and ECD practitioners. For the early-access waitlist, TaaPlay is the responsible party under the Protection of Personal Information Act, 2013 (POPIA). Our contact email is <a href="mailto:hello@taaplay.com">hello@taaplay.com</a>.</p>
+          </article>
 
-        <section id="s3">
-          <h2>3) What we collect on this page</h2>
-          <ul>
-            <li><strong>Email address</strong> (required)</li>
-            <li><strong>Role</strong> (ECD practitioner/teacher; parent/caregiver; centre owner/principal; NGO/programme manager; other)</li>
-            <li><strong>Province</strong> (South Africa)</li>
-            <li><strong>Preferred language</strong> (one of SA’s 11 official languages)</li>
-            <li><strong>Top need</strong> (free-text, optional)</li>
-            <li><strong>Consent checkbox</strong> confirming you want to hear from us about early access and related ECD resources (required).</li>
-          </ul>
-          <p>We do not intentionally collect children’s personal information on this page.</p>
-        </section>
+          <article id="sec2" class="policy-section">
+            <h3>2) Scope</h3>
+            <p>This notice applies to the early-access landing page and waitlist form and describes how we process the personal information you submit there. It does not cover future in-app features; those will have an expanded notice.</p>
+          </article>
 
-        <section id="s4">
-          <h2>4) Why we process your information (purpose)</h2>
-          <ul>
-            <li>To register your interest in early access, manage the waitlist, and send onboarding emails.</li>
-            <li>To segment invitations (e.g., by role, province, or preferred language) and prepare a relevant starter pack.</li>
-            <li>To measure basic, privacy-respecting engagement with the page (if we enable analytics; see §8).</li>
-          </ul>
-          <p class="source">These purposes align with POPIA’s conditions for lawful processing (purpose specification, minimality, openness, and security).</p>
-        </section>
+          <article id="sec3" class="policy-section">
+            <h3>3) What we collect on this page</h3>
+            <p>If you join the waitlist, we collect:</p>
+            <ul>
+              <li>Email address (required)</li>
+              <li>Role (ECD practitioner/teacher; parent/caregiver; centre owner/principal; NGO/programme manager; other)</li>
+              <li>Province (South Africa)</li>
+              <li>Preferred language (one of SA’s 11 official languages)</li>
+              <li>Top need (free-text, optional)</li>
+              <li>A required consent checkbox confirming you want to hear from us about early access and related ECD resources.</li>
+            </ul>
+            <p>We do not intentionally collect children’s personal information on this page.</p>
+          </article>
 
-        <section id="s5">
-          <h2>5) Our lawful justification under POPIA (Section 11)</h2>
-          <p>We process your information primarily on the grounds of <strong>consent</strong> (you actively opt in) and, where appropriate, <strong>legitimate interests</strong> (e.g., operating a waitlist you asked to join). POPIA recognises consent and legitimate interests, among other grounds, as lawful justifications for processing. You may withdraw consent at any time; prior lawful processing remains unaffected.</p>
-        </section>
+          <article id="sec4" class="policy-section">
+            <h3>4) Why we process your information (purpose)</h3>
+            <ul>
+              <li>To register your interest in early access, manage the waitlist, and send onboarding emails.</li>
+              <li>To segment invitations (e.g., by role, province, or preferred language) and prepare a relevant starter pack.</li>
+              <li>To measure basic, privacy-respecting engagement with the page (if we enable analytics; see §8).</li>
+            </ul>
+            <p>These purposes align with POPIA’s conditions for lawful processing (purpose specification, minimality, openness, and security).</p>
+          </article>
 
-        <section id="s6">
-          <h2>6) Direct marketing rules (Section 69)</h2>
-          <p>Email messages about early access and related ECD resources are direct marketing. Under POPIA, this is allowed only with prior consent (or certain existing customer circumstances). We obtain your consent via the checkbox and include an unsubscribe link in each message.</p>
-        </section>
+          <article id="sec5" class="policy-section">
+            <h3>5) Our lawful justification under POPIA (Section 11)</h3>
+            <p>We process your information primarily on the grounds of consent (you actively opt in) and, where appropriate, legitimate interests (e.g., operating a waitlist you asked to join). POPIA recognises consent and legitimate interests, among other grounds, as lawful justifications for processing. You may withdraw consent at any time; prior lawful processing remains unaffected.</p>
+          </article>
 
-        <section id="s7">
-          <h2>7) What we share and with whom (processors)</h2>
-          <p>We do not sell your personal information. We use trusted service providers to run the waitlist and (optionally) analytics:</p>
-          <ul>
-            <li><strong>Email &amp; waitlist management</strong>: ConvertKit — processes your email and the form fields on our behalf to deliver emails and manage subscription status. ConvertKit provides a DPA and publishes GDPR-compliance information.</li>
-            <li><strong>Analytics (optional)</strong>: Plausible Analytics — if enabled, it is cookie-less and designed not to collect personal data, providing aggregated page metrics only.</li>
-          </ul>
-          <p>We will update this section if we add or change processors.</p>
-        </section>
+          <article id="sec6" class="policy-section">
+            <h3>6) Direct marketing rules (Section 69)</h3>
+            <p>Email messages about early access and related ECD resources are direct marketing. Under POPIA, this is allowed only with prior consent (or certain existing-customer circumstances). We obtain your consent via the checkbox and include an unsubscribe link in each message.</p>
+          </article>
 
-        <section id="s8">
-          <h2>8) Cookies and analytics</h2>
-          <p>We currently run a lightweight, static page. If we enable Plausible, it uses no cookies and does not collect personally identifiable information; its metrics are aggregated and privacy-friendly.</p>
-        </section>
+          <article id="sec7" class="policy-section">
+            <h3>7) What we share and with whom (processors)</h3>
+            <p>We do not sell your personal information. We use trusted service providers to run the waitlist and (optionally) analytics:</p>
+            <ul>
+              <li><strong>Email &amp; waitlist management:</strong> ConvertKit — processes your email and the form fields on our behalf to deliver emails and manage subscription status.</li>
+              <li><strong>Analytics (optional):</strong> Plausible Analytics — if enabled, it is cookie-less and designed not to collect personal data, providing aggregated page metrics only.</li>
+            </ul>
+            <p class="note">We will update this section if we add or change processors.</p>
+          </article>
 
-        <section id="s9">
-          <h2>9) Cross-border transfers (Section 72)</h2>
-          <p>Some processors may store or process data outside South Africa (e.g., in the United States or the EU). When we transfer information cross-border, we do so in line with Section 72 of POPIA—for example, by using contracts and other safeguards to ensure adequate protection in the destination country.</p>
-        </section>
+          <article id="sec8" class="policy-section">
+            <h3>8) Cookies and analytics</h3>
+            <p>We currently run a lightweight, static page. If we enable Plausible, it uses no cookies and does not collect personally identifiable information; its metrics are aggregated and privacy-friendly.</p>
+          </article>
 
-        <section id="s10">
-          <h2>10) Security</h2>
-          <p>We take appropriate technical and organisational measures to protect your information (e.g., limiting access, using encrypted transport, and selecting reputable processors). While no system is perfectly secure, we continually review and improve our controls in line with POPIA’s security safeguard conditions.</p>
-        </section>
+          <article id="sec9" class="policy-section">
+            <h3>9) Cross-border transfers (Section 72)</h3>
+            <p>Some processors may store or process data outside South Africa (e.g., in the United States or the EU). When we transfer information cross-border, we do so in line with Section 72 of POPIA—for example, by using contracts and other safeguards to ensure adequate protection in the destination country.</p>
+          </article>
 
-        <section id="s11">
-          <h2>11) Retention</h2>
-          <p>We keep waitlist information only as long as necessary for early-access onboarding and to meet legal or operational requirements, after which we delete or de-identify it. Practically, we aim to remove dormant waitlist records within 24&nbsp;months of inactivity or sooner on request, consistent with POPIA’s purpose-specification &amp; retention rules.</p>
-        </section>
+          <article id="sec10" class="policy-section">
+            <h3>10) Security</h3>
+            <p>We take appropriate technical and organisational measures to protect your information (e.g., limiting access, using encrypted transport, and selecting reputable processors). While no system is perfectly secure, we continually review and improve our controls in line with POPIA’s security-safeguard conditions.</p>
+          </article>
 
-        <section id="s12">
-          <h2>12) Your rights</h2>
-          <p>Under POPIA, you can request to access, correct, or delete your personal information, object to processing, or withdraw consent. Email <a href="mailto:hello@taaplay.com">hello@taaplay.com</a> to exercise these rights. You also have the right to lodge a complaint with the Information Regulator (South Africa).</p>
+          <article id="sec11" class="policy-section">
+            <h3>11) Retention</h3>
+            <p>We keep waitlist information only as long as necessary for early-access onboarding and to meet legal or operational requirements, after which we delete or de-identify it. Practically, we aim to remove dormant waitlist records within 24 months of inactivity or sooner on request, consistent with POPIA’s purpose-specification &amp; retention rules.</p>
+          </article>
 
-          <div class="callout">
-            <strong>Information Regulator (South Africa)</strong><br>
-            General enquiries: <a href="mailto:enquiries@inforegulator.org.za">enquiries@inforegulator.org.za</a><br>
-            POPIA complaints: <a href="mailto:POPIAComplaints@inforegulator.org.za">POPIAComplaints@inforegulator.org.za</a><br>
-            Website: <a href="https://www.inforegulator.org.za" target="_blank" rel="noopener">inforegulator.org.za</a>
-          </div>
-        </section>
+          <article id="sec12" class="policy-section">
+            <h3>12) Your rights</h3>
+            <p>Under POPIA, you can request to access, correct, or delete your personal information, object to processing, or withdraw consent. Email <a href="mailto:hello@taaplay.com">hello@taaplay.com</a> to exercise these rights. You also have the right to lodge a complaint with the Information Regulator (South Africa).</p>
+            <ul>
+              <li><strong>Information Regulator (South Africa):</strong> enquiries@inforegulator.org.za</li>
+              <li><strong>POPIA Complaints:</strong> POPIAComplaints@inforegulator.org.za</li>
+            </ul>
+          </article>
 
-        <section id="s13">
-          <h2>13) Children’s privacy</h2>
-          <p>This page is intended for adults (parents/caregivers and practitioners). We do not knowingly collect personal information from children on the waitlist. If we learn we have done so inadvertently, we will delete it promptly. Any future features involving children’s information will include age-appropriate notices and competent-person consent consistent with POPIA.</p>
-        </section>
+          <article id="sec13" class="policy-section">
+            <h3>13) Children’s privacy</h3>
+            <p>This page is intended for adults (parents/caregivers and practitioners). We do not knowingly collect personal information from children on the waitlist. If we learn we have done so inadvertently, we will delete it promptly. Any future features involving children’s information will include age-appropriate notices and competent-person consent consistent with POPIA.</p>
+          </article>
 
-        <section id="s14">
-          <h2>14) Updates to this notice</h2>
-          <p>We may update this notice from time to time. We will change the effective date above and, where appropriate, provide a more prominent notice of material changes.</p>
-        </section>
-
-        <div class="callout" role="note" aria-label="Contact">
-          <strong>Questions?</strong> Email us at <a href="mailto:hello@taaplay.com">hello@taaplay.com</a>.
+          <article id="sec14" class="policy-section">
+            <h3>14) Updates to this notice</h3>
+            <p>We may update this notice from time to time. We will change the effective date above and, where appropriate, provide a more prominent notice of material changes.</p>
+          </article>
         </div>
-      </article>
-    </div>
+      </div>
+    </section>
 
+    <!-- Footer -->
     <footer>
-      <div class="container" style="display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap">
+      <div class="container foot">
         <span>&copy; TaaPlay 2025</span>
         <span aria-hidden="true">•</span>
         <a href="index.html">Home</a>
         <span aria-hidden="true">•</span>
-        <a href="#content">Back to top</a>
+        <span>Contact: <a href="mailto:hello@taaplay.com">hello@taaplay.com</a></span>
       </div>
     </footer>
   </div>
-
-  <!-- (Optional) Tiny enhancement: highlight TOC link for current hash -->
-  <script>
-    (function(){
-      function setActive(){
-        var h = location.hash || '';
-        document.querySelectorAll('.toc a').forEach(function(a){
-          if(h && a.getAttribute('href')===h){ a.style.color = 'var(--brand-lime)'; a.style.fontWeight='700'; }
-          else { a.style.color='var(--text-300)'; a.style.fontWeight='600'; }
-        });
-      }
-      window.addEventListener('hashchange', setActive);
-      setActive();
-    })();
-  </script>
 </body>
 </html>
