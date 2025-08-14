@@ -1,63 +1,379 @@
-Privacy Notice — TaaPlay (Draft)
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Notice — TaaPlay</title>
+  <meta name="description" content="How TaaPlay processes the personal information you submit on the early-access waitlist page (POPIA-aligned)." />
+  <meta property="og:title" content="Privacy Notice — TaaPlay" />
+  <meta property="og:description" content="How TaaPlay processes the personal information you submit on the early-access waitlist page (POPIA-aligned)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/brand/taaplay-og.png" />
+  <meta property="og:image:alt" content="TaaPlay brand preview in deep teal, lime, orange and soft purple" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0E7490" />
+  <link rel="preload" as="image" href="assets/brand/taaplay-logo-horiz.png" imagesrcset="assets/brand/taaplay-logo-horiz@2x.png 2x">
+  <link rel="preload" as="image" href="assets/brand/taaplay-mark.png">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+  <link rel="mask-icon" href="assets/brand/favicon.svg" color="#0E7490" />
 
-Effective date: 14 August 2025
-Contact: hello@taaplay.com
+  <style>
+    /* ===== Brand & UI tokens (match landing page) ===== */
+    :root{
+      /* Dark frame */
+      --surface-900:#0B0F19; --surface-800:#111827; --surface-700:#0f172a;
+      --border-700:#1F2937;
+      --text-100:#E5E7EB; --text-300:#CBD5E1; --text-500:#94A3B8;
+      /* Brand palette */
+      --brand-primary:#0E7490;           /* deep teal */
+      --brand-primary-strong:#0A5E72;
+      --brand-lime:#A3E635;
+      --brand-orange:#FF6B35;
+      --brand-purple:#A78BFA;
+      /* Neutrals */
+      --neutral-offwhite:#F7F7F5;
+      --neutral-light:#E5E7EB;
+    }
 
-1) Who we are
-“TaaPlay” (“we”, “us”) is developing an early-learning platform for South African families and ECD practitioners. For the early-access waitlist, TaaPlay is the responsible party under the Protection of Personal Information Act, 2013 (POPIA). Our contact email is above.
+    html,body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Noto Sans","Liberation Sans", sans-serif;
+      line-height: 1.65;
+      background:#000;
+      color: var(--text-100);
+    }
 
-2) Scope
-This notice applies to the early-access landing page and waitlist form and describes how we process the personal information you submit there. It does not cover future in-app features; those will have an expanded notice.
+    a{ color: var(--brand-primary-strong); }
+    a:hover{ color: var(--brand-lime); text-decoration: underline; text-underline-offset: 2px; }
+    a:visited{ color: var(--brand-purple); }
+    a:focus, button:focus{ outline: 3px dotted var(--brand-primary-strong); outline-offset: 2px; }
 
-3) What we collect on this page
-If you join the waitlist, we collect:
-•	Email address (required)
-•	Role (ECD practitioner/teacher; parent/caregiver; centre owner/principal; NGO/programme manager; other)
-•	Province (South Africa)
-•	Preferred language (one of SA’s 11 official languages)
-•	Top need (free-text, optional)
-•	A required consent checkbox confirming you want to hear from us about early access and related ECD resources.
+    .visually-hidden{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
-We do not intentionally collect children’s personal information on this page.
+    /* ===== Frame & header ===== */
+    .frame{
+      background: var(--surface-900);
+      border: 1.5px solid var(--border-700);
+      border-radius: 24px;
+      width: min(1100px, 96vw);
+      margin: clamp(8px, 2.5vw, 28px) auto;
+      box-shadow: 0 10px 40px rgba(0,0,0,.45);
+      overflow: hidden;
+    }
+    header{
+      position: sticky; top: 0; z-index: 20;
+      background: var(--surface-900);
+      border-bottom: 1px solid var(--border-700);
+      padding: .75rem 0;
+    }
+    .container{ width: min(1000px, 92vw); margin-inline: auto; }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .brand{ display:flex; align-items:center; gap:.625rem; text-decoration:none; }
+    .brand-logo{ display:flex; align-items:center; background:none; }
+    .brand-logo img{ height:40px; width:auto; border-radius:0; display:block; }
+    .brand-text-fallback{ display:none; font-weight:800; letter-spacing:.2px; color:var(--text-100); font-size:1.15rem; }
+    .brand-name{ position:absolute; left:-9999px; }
 
-4) Why we process your information (purpose)
-•	To register your interest in early access, manage the waitlist, and send onboarding emails.
-•	To segment invitations (e.g., by role, province, or preferred language) and prepare a relevant starter pack.
-•	To measure basic, privacy-respecting engagement with the page (if we enable analytics; see §8).
+    .backlink{ color: var(--text-300); font-weight:600; }
+    .backlink:hover{ color: var(--brand-lime); }
 
-These purposes align with POPIA’s conditions for lawful processing (purpose specification, minimality, openness, and security). (Government of South Africa)
+    /* ===== Hero / page title ===== */
+    .hero{ padding: clamp(1.25rem, 1.5vw + .75rem, 2rem) 0 0; }
+    .eyebrow{ color: var(--brand-lime); font-weight:800; font-size:.9rem; text-transform:uppercase; letter-spacing:.16em; }
+    h1{
+      font-size: clamp(1.8rem, 2.2vw + 1rem, 2.6rem);
+      line-height: 1.15;
+      margin: .35rem 0 .25rem;
+      background: linear-gradient(90deg, var(--brand-lime) 0%, var(--brand-orange) 45%, var(--brand-purple) 85%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .meta{ color: var(--text-500); font-size:.95rem; }
 
-5) Our lawful justification under POPIA (Section 11)
-We process your information primarily on the grounds of consent (you actively opt in) and, where appropriate, legitimate interests (e.g., operating a waitlist you asked to join). POPIA recognises consent and legitimate interests, among other grounds, as lawful justifications for processing. You may withdraw consent at any time; prior lawful processing remains unaffected. (Government of South Africa, Law Library)
+    /* ===== Layout: TOC + content ===== */
+    .main{
+      display:grid; gap: 1.25rem;
+      grid-template-columns: 1fr;
+      padding: 1rem 0 2rem;
+    }
+    @media (min-width: 980px){
+      .main{ grid-template-columns: 280px 1fr; align-items:start; }
+    }
 
-6) Direct marketing rules (Section 69)
-Email messages about early access and related ECD resources are direct marketing. Under POPIA, this is allowed only with prior consent (or certain existing customer circumstances). We obtain your consent via the checkbox and include an unsubscribe link in each message. (POPIA)
+    /* TOC */
+    .toc{
+      position: sticky; top: 70px;
+      background: var(--surface-800);
+      border: 1px solid var(--border-700);
+      border-radius: 16px;
+      padding: .75rem .9rem;
+      max-height: calc(100vh - 100px);
+      overflow: auto;
+    }
+    .toc h2{
+      margin: .25rem 0 .25rem;
+      font-size: 1rem;
+      color: var(--text-100);
+    }
+    .toc ol{
+      margin: .5rem 0 0; padding: 0 0 0 1rem;
+      display: grid; gap: .35rem;
+      color: var(--text-300);
+      font-size: .98rem;
+    }
+    .toc a{ text-decoration:none; color: var(--text-300); }
+    .toc a:hover{ color: var(--brand-lime); text-decoration: underline; }
 
-7) What we share and with whom (processors)
-We do not sell your personal information. We use trusted service providers to run the waitlist and (optionally) analytics:
-•	Email & waitlist management: ConvertKit (Kit) — processes your email and the form fields on our behalf to deliver emails and manage subscription status. ConvertKit provides a DPA and publishes GDPR-compliance information. (Kit Help Center, Kit)
-•	Analytics (optional): Plausible Analytics — if enabled, it is cookie-less and designed not to collect personal data, providing aggregated page metrics only. (Plausible Analytics)
+    /* Content card */
+    .doc{
+      background: var(--surface-800);
+      border: 1px solid var(--border-700);
+      border-radius: 16px;
+      padding: clamp(1rem, 1.25vw + .5rem, 1.5rem);
+    }
+    .doc h2{
+      font-size: clamp(1.2rem, 1.5vw + .8rem, 1.6rem);
+      line-height: 1.25;
+      margin: 1.25rem 0 .5rem;
+      color: var(--text-100);
+      border-left: 3px solid var(--brand-primary);
+      padding-left: .6rem;
+    }
+    .doc p{ margin: .5rem 0; color: var(--text-300); }
+    .doc ul{ margin: .35rem 0 .75rem 1.25rem; }
+    .doc li{ margin: .25rem 0; }
 
-We will update this section if we add or change processors.
+    /* Callouts */
+    .callout{
+      margin: .75rem 0;
+      border: 1px solid var(--border-700);
+      border-radius: 12px;
+      padding: .75rem .9rem;
+      background:
+        linear-gradient(180deg, rgba(14,116,144,.14), rgba(14,116,144,.06)) padding-box,
+        conic-gradient(from 30deg,
+          rgba(163,230,53,.35),
+          rgba(255,107,53,.35),
+          rgba(167,139,250,.35),
+          rgba(163,230,53,.35)
+        ) border-box;
+      border: 2px solid transparent;
+    }
+    .callout strong{ color: var(--neutral-light); }
 
-8) Cookies and analytics
-We currently run a lightweight, static page. If we enable Plausible, it uses no cookies and does not collect personally identifiable information; its metrics are aggregated and privacy-friendly. (Plausible Analytics)
+    /* Footnote-ish sources */
+    .source{ color: var(--text-500); font-style: italic; }
 
-9) Cross-border transfers (Section 72)
-Some processors may store or process data outside South Africa (e.g., in the United States or the EU). When we transfer information cross-border, we do so in line with Section 72 of POPIA—for example, by using contracts and other safeguards to ensure adequate protection in the destination country. (POPIA, Dentons)
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--border-700);
+      color: var(--text-300);
+      padding: 1rem 0;
+      text-align:center;
+      background: var(--surface-900);
+    }
 
-10) Security
-We take appropriate technical and organisational measures to protect your information (e.g., limiting access, using encrypted transport, and selecting reputable processors). While no system is perfectly secure, we continually review and improve our controls in line with POPIA’s security safeguard conditions. (Government of South Africa)
+    /* Focused section highlight on hash navigation */
+    :target{ scroll-margin-top: 80px; }
+  </style>
 
-11) Retention
-We keep waitlist information only as long as necessary for early-access onboarding and to meet legal or operational requirements, after which we delete or de-identify it. Practically, we aim to remove dormant waitlist records within 24 months of inactivity or sooner on request, consistent with POPIA’s purpose specification & retention rules. (Government of South Africa)
+  <script>
+    // Logo fallback (same pattern as index)
+    (function(){
+      window.__logoFallback = function(img){
+        if(!img) return;
+        var tried = img.getAttribute('data-tried-mark') === '1';
+        if(!tried){
+          img.setAttribute('data-tried-mark','1');
+          img.onerror = function(){ window.__logoFallback && __logoFallback(img); };
+          img.removeAttribute('srcset');
+          img.src = 'assets/brand/taaplay-mark.png';
+          img.style.height = '36px';
+          img.style.width  = '36px';
+          img.style.borderRadius = '10px';
+        }else{
+          img.style.display = 'none';
+          var t = img.parentElement && img.parentElement.querySelector('.brand-text-fallback');
+          if(t) t.style.display = 'inline-block';
+        }
+      };
+    })();
+  </script>
+</head>
+<body>
+  <a class="visually-hidden" href="#content">Skip to content</a>
+  <div class="frame">
+    <header>
+      <div class="container nav">
+        <a class="brand" href="index.html" aria-label="Back to TaaPlay home">
+          <div class="brand-logo">
+            <img src="assets/brand/taaplay-logo-horiz.png"
+                 srcset="assets/brand/taaplay-logo-horiz@2x.png 2x"
+                 alt="TaaPlay"
+                 loading="eager"
+                 decoding="async"
+                 onerror="window.__logoFallback&&__logoFallback(this)" />
+            <span class="brand-text-fallback" aria-hidden="true">TaaPlay</span>
+          </div>
+          <span class="brand-name">TaaPlay</span>
+        </a>
+        <a class="backlink" href="index.html">← Back to site</a>
+      </div>
+      <div class="container hero">
+        <div class="eyebrow">Privacy Notice</div>
+        <h1>How we handle your information</h1>
+        <div class="meta">Effective date: <strong>14 August 2025</strong> • Contact: <a href="mailto:hello@taaplay.com">hello@taaplay.com</a></div>
+      </div>
+    </header>
 
-12) Your rights
-Under POPIA, you can request to access, correct, or delete your personal information, object to processing, or withdraw consent. Email hello@taaplay.com to exercise these rights. You also have the right to lodge a complaint with the Information Regulator (South Africa). (Government of South Africa)
-Information Regulator (South Africa) — enquiries@inforegulator.org.za; complaints: POPIAComplaints@inforegulator.org.za (see the Regulator’s contact and complaints pages). (inforegulator.org.za)
+    <div class="container main" id="content">
+      <!-- TOC -->
+      <nav class="toc" aria-label="Table of contents">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#s1">1) Who we are</a></li>
+          <li><a href="#s2">2) Scope</a></li>
+          <li><a href="#s3">3) What we collect</a></li>
+          <li><a href="#s4">4) Why we process</a></li>
+          <li><a href="#s5">5) Lawful basis (POPIA §11)</a></li>
+          <li><a href="#s6">6) Direct marketing (POPIA §69)</a></li>
+          <li><a href="#s7">7) Processors</a></li>
+          <li><a href="#s8">8) Cookies & analytics</a></li>
+          <li><a href="#s9">9) Cross-border transfers (POPIA §72)</a></li>
+          <li><a href="#s10">10) Security</a></li>
+          <li><a href="#s11">11) Retention</a></li>
+          <li><a href="#s12">12) Your rights</a></li>
+          <li><a href="#s13">13) Children’s privacy</a></li>
+          <li><a href="#s14">14) Updates</a></li>
+        </ol>
+      </nav>
 
-13) Children’s privacy
-This page is intended for adults (parents/caregivers and practitioners). We do not knowingly collect personal information from children on the waitlist. If we learn we have done so inadvertently, we will delete it promptly. Any future features involving children’s information will include age-appropriate notices and competent-person consent consistent with POPIA. (Government of South Africa)
+      <!-- Document -->
+      <article class="doc">
+        <section id="s1">
+          <h2>1) Who we are</h2>
+          <p>“TaaPlay” (“we”, “us”) is developing an early-learning platform for South African families and ECD practitioners. For the early-access waitlist, TaaPlay is the responsible party under the Protection of Personal Information Act, 2013 (POPIA). Our contact email is above.</p>
+        </section>
 
-14) Updates to this notice
-We may update this notice from time to time. We will change the effective date above and, where appropriate, provide a more prominent notice of material changes.
+        <section id="s2">
+          <h2>2) Scope</h2>
+          <p>This notice applies to the early-access landing page and waitlist form and describes how we process the personal information you submit there. It does not cover future in-app features; those will have an expanded notice.</p>
+        </section>
+
+        <section id="s3">
+          <h2>3) What we collect on this page</h2>
+          <ul>
+            <li><strong>Email address</strong> (required)</li>
+            <li><strong>Role</strong> (ECD practitioner/teacher; parent/caregiver; centre owner/principal; NGO/programme manager; other)</li>
+            <li><strong>Province</strong> (South Africa)</li>
+            <li><strong>Preferred language</strong> (one of SA’s 11 official languages)</li>
+            <li><strong>Top need</strong> (free-text, optional)</li>
+            <li><strong>Consent checkbox</strong> confirming you want to hear from us about early access and related ECD resources (required).</li>
+          </ul>
+          <p>We do not intentionally collect children’s personal information on this page.</p>
+        </section>
+
+        <section id="s4">
+          <h2>4) Why we process your information (purpose)</h2>
+          <ul>
+            <li>To register your interest in early access, manage the waitlist, and send onboarding emails.</li>
+            <li>To segment invitations (e.g., by role, province, or preferred language) and prepare a relevant starter pack.</li>
+            <li>To measure basic, privacy-respecting engagement with the page (if we enable analytics; see §8).</li>
+          </ul>
+          <p class="source">These purposes align with POPIA’s conditions for lawful processing (purpose specification, minimality, openness, and security).</p>
+        </section>
+
+        <section id="s5">
+          <h2>5) Our lawful justification under POPIA (Section 11)</h2>
+          <p>We process your information primarily on the grounds of <strong>consent</strong> (you actively opt in) and, where appropriate, <strong>legitimate interests</strong> (e.g., operating a waitlist you asked to join). POPIA recognises consent and legitimate interests, among other grounds, as lawful justifications for processing. You may withdraw consent at any time; prior lawful processing remains unaffected.</p>
+        </section>
+
+        <section id="s6">
+          <h2>6) Direct marketing rules (Section 69)</h2>
+          <p>Email messages about early access and related ECD resources are direct marketing. Under POPIA, this is allowed only with prior consent (or certain existing customer circumstances). We obtain your consent via the checkbox and include an unsubscribe link in each message.</p>
+        </section>
+
+        <section id="s7">
+          <h2>7) What we share and with whom (processors)</h2>
+          <p>We do not sell your personal information. We use trusted service providers to run the waitlist and (optionally) analytics:</p>
+          <ul>
+            <li><strong>Email &amp; waitlist management</strong>: ConvertKit — processes your email and the form fields on our behalf to deliver emails and manage subscription status. ConvertKit provides a DPA and publishes GDPR-compliance information.</li>
+            <li><strong>Analytics (optional)</strong>: Plausible Analytics — if enabled, it is cookie-less and designed not to collect personal data, providing aggregated page metrics only.</li>
+          </ul>
+          <p>We will update this section if we add or change processors.</p>
+        </section>
+
+        <section id="s8">
+          <h2>8) Cookies and analytics</h2>
+          <p>We currently run a lightweight, static page. If we enable Plausible, it uses no cookies and does not collect personally identifiable information; its metrics are aggregated and privacy-friendly.</p>
+        </section>
+
+        <section id="s9">
+          <h2>9) Cross-border transfers (Section 72)</h2>
+          <p>Some processors may store or process data outside South Africa (e.g., in the United States or the EU). When we transfer information cross-border, we do so in line with Section 72 of POPIA—for example, by using contracts and other safeguards to ensure adequate protection in the destination country.</p>
+        </section>
+
+        <section id="s10">
+          <h2>10) Security</h2>
+          <p>We take appropriate technical and organisational measures to protect your information (e.g., limiting access, using encrypted transport, and selecting reputable processors). While no system is perfectly secure, we continually review and improve our controls in line with POPIA’s security safeguard conditions.</p>
+        </section>
+
+        <section id="s11">
+          <h2>11) Retention</h2>
+          <p>We keep waitlist information only as long as necessary for early-access onboarding and to meet legal or operational requirements, after which we delete or de-identify it. Practically, we aim to remove dormant waitlist records within 24&nbsp;months of inactivity or sooner on request, consistent with POPIA’s purpose-specification &amp; retention rules.</p>
+        </section>
+
+        <section id="s12">
+          <h2>12) Your rights</h2>
+          <p>Under POPIA, you can request to access, correct, or delete your personal information, object to processing, or withdraw consent. Email <a href="mailto:hello@taaplay.com">hello@taaplay.com</a> to exercise these rights. You also have the right to lodge a complaint with the Information Regulator (South Africa).</p>
+
+          <div class="callout">
+            <strong>Information Regulator (South Africa)</strong><br>
+            General enquiries: <a href="mailto:enquiries@inforegulator.org.za">enquiries@inforegulator.org.za</a><br>
+            POPIA complaints: <a href="mailto:POPIAComplaints@inforegulator.org.za">POPIAComplaints@inforegulator.org.za</a><br>
+            Website: <a href="https://www.inforegulator.org.za" target="_blank" rel="noopener">inforegulator.org.za</a>
+          </div>
+        </section>
+
+        <section id="s13">
+          <h2>13) Children’s privacy</h2>
+          <p>This page is intended for adults (parents/caregivers and practitioners). We do not knowingly collect personal information from children on the waitlist. If we learn we have done so inadvertently, we will delete it promptly. Any future features involving children’s information will include age-appropriate notices and competent-person consent consistent with POPIA.</p>
+        </section>
+
+        <section id="s14">
+          <h2>14) Updates to this notice</h2>
+          <p>We may update this notice from time to time. We will change the effective date above and, where appropriate, provide a more prominent notice of material changes.</p>
+        </section>
+
+        <div class="callout" role="note" aria-label="Contact">
+          <strong>Questions?</strong> Email us at <a href="mailto:hello@taaplay.com">hello@taaplay.com</a>.
+        </div>
+      </article>
+    </div>
+
+    <footer>
+      <div class="container" style="display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap">
+        <span>&copy; TaaPlay 2025</span>
+        <span aria-hidden="true">•</span>
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">•</span>
+        <a href="#content">Back to top</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- (Optional) Tiny enhancement: highlight TOC link for current hash -->
+  <script>
+    (function(){
+      function setActive(){
+        var h = location.hash || '';
+        document.querySelectorAll('.toc a').forEach(function(a){
+          if(h && a.getAttribute('href')===h){ a.style.color = 'var(--brand-lime)'; a.style.fontWeight='700'; }
+          else { a.style.color='var(--text-300)'; a.style.fontWeight='600'; }
+        });
+      }
+      window.addEventListener('hashchange', setActive);
+      setActive();
+    })();
+  </script>
+</body>
+</html>
