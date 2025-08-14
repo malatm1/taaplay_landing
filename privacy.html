@@ -2,163 +2,367 @@
 <html lang="en-ZA">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy Notice — TaaPlay</title>
-  <meta name="description" content="TaaPlay Privacy Notice for the early-access landing page and waitlist." />
-  <meta name="theme-color" content="#0E7490" />
+
+  <!-- Brand / meta -->
+  <meta name="description" content="TaaPlay Privacy Notice for the early-access landing page and waitlist (POPIA-aligned)." />
+  <meta property="og:title" content="Privacy Notice — TaaPlay" />
+  <meta property="og:description" content="How we handle your information for the early-access waitlist." />
+  <meta property="og:type" content="website" />
   <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Privacy Notice — TaaPlay" />
-  <meta property="og:description" content="How TaaPlay processes your information for the early-access waitlist." />
   <meta property="og:image" content="assets/brand/taaplay-og.png" />
-  <meta property="og:image:alt" content="TaaPlay brand preview in deep teal, lime, orange and soft purple" />
+  <meta name="theme-color" content="#0E7490" />
 
   <style>
+    /* ============= Palette (matches landing) ============= */
     :root{
-      /* Dark UI (same as landing) */
       --surface-900:#0B0F19; --surface-800:#111827; --border-700:#1F2937;
       --text-100:#E5E7EB; --text-300:#CBD5E1; --text-500:#94A3B8;
-
-      /* Brand palette */
       --brand-primary:#0E7490; --brand-primary-strong:#0A5E72;
       --brand-lime:#A3E635; --brand-orange:#FF6B35; --brand-purple:#A78BFA;
-
-      /* Layout tokens */
-      --container-w: 1120px;
-      --content-max: 74ch;
-      --header-h: 64px;
+      --neutral-offwhite:#F7F7F5;
+      --scroll-offset: 84px; /* header height allowance for anchor jumps */
     }
 
-    html,body{margin:0;padding:0;background:#000;color:#111827;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,'Noto Sans','Liberation Sans',sans-serif;line-height:1.6}
-    /* Smooth anchors, avoid clipping under sticky header */
-    html{scroll-behavior:smooth; scroll-padding-top: calc(var(--header-h) + 16px);}
+    html,body{
+      height:100%;
+      background:#000;
+      color:var(--text-100);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+      line-height:1.65;
+      overflow-x:hidden; /* prevents any lateral shift after anchor jumps */
+    }
 
-    /* Shell frame to match landing */
-    .frame{background:var(--surface-900);color:var(--text-100);border:1.5px solid var(--border-700);border-radius:24px;
-      width:min(1200px,96vw);margin:clamp(8px,2.5vw,28px) auto;box-shadow:0 10px 40px rgba(0,0,0,.45);overflow:hidden}
+    a{ color:var(--brand-primary-strong); text-decoration:none; }
+    a:hover{ color:var(--brand-lime); text-decoration:underline; text-underline-offset:2px; }
+    a:visited{ color:var(--brand-purple); }
+    a:focus{ outline:3px dotted var(--brand-primary-strong); outline-offset:2px; }
 
-    .container{width:min(var(--container-w),92vw);margin-inline:auto;padding-inline:1rem}
+    .container{ width:min(1120px, 92vw); margin-inline:auto; }
 
-    /* Header (sticky like landing) */
-    header{position:sticky;top:0;z-index:10;background:var(--surface-900);border-bottom:1px solid var(--border-700);height:var(--header-h);
-      display:flex;align-items:center}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:.75rem}
-    .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
-    .brand img{height:40px;width:auto;display:block}
-    .brand-name{color:var(--text-100);font-weight:800;letter-spacing:.2px}
-    .back-link{color:var(--brand-primary);font-weight:700}
-    .back-link:hover{color:var(--brand-lime);text-decoration:underline;text-underline-offset:2px}
+    /* =================== Framed shell + header =================== */
+    .frame{
+      background:var(--surface-900);
+      border:1.5px solid var(--border-700);
+      border-radius:24px;
+      box-shadow:0 10px 40px rgba(0,0,0,.45);
+      width:min(1200px,96vw);
+      margin:clamp(8px,2.5vw,28px) auto;
+      overflow:visible;
+    }
 
-    /* Title area */
-    .hero{padding:1.25rem 0 0}
-    h1{margin:.25rem 0 .5rem;font-size:clamp(1.5rem,1.2rem + 1.2vw,2rem);line-height:1.2}
-    .meta{color:var(--text-500);font-size:.95rem}
+    header{
+      position:sticky; top:0; z-index:10;
+      background:var(--surface-900);
+      border-bottom:1px solid var(--border-700);
+      border-top-left-radius:24px; border-top-right-radius:24px;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      padding:.875rem 0;
+    }
+    .brand{ display:flex; align-items:center; gap:.625rem; text-decoration:none; }
+    .brand-logo img{ height:40px; width:auto; display:block; }
+    .brand-name{ font-weight:800; letter-spacing:.2px; color:var(--text-100); }
 
-    /* Layout: desktop = sidebar TOC + content; mobile = stacked with collapsible TOC */
-    .layout{display:block}
-    @media (min-width: 960px){
-      .layout{
-        display:grid;
-        grid-template-columns: 280px 1fr;
-        gap: clamp(1rem, 2vw, 2rem);
+    /* =================== Page layout =================== */
+    main{ padding: clamp(1.25rem, 1.5vw + 1rem, 2rem) 0 2rem; }
+    .grid{
+      display:grid; gap:clamp(1rem, 1.5vw, 1.5rem);
+      grid-template-columns: 1fr; /* mobile first */
+    }
+    @media (min-width: 980px){
+      .grid{
+        grid-template-columns: 260px 1fr; /* TOC | content */
         align-items:start;
       }
     }
 
-    /* Desktop sidebar TOC */
+    /* =================== TOC =================== */
+    /* Desktop aside */
     aside.toc{
       display:none;
-      background:var(--surface-800);
-      border:1px solid var(--border-700);
-      border-radius:16px;
-      padding:1rem;
-      position:sticky;
-      top:calc(var(--header-h) + 16px);
     }
-    @media (min-width:960px){
-      aside.toc{display:block}
+    @media (min-width: 980px){
+      aside.toc{
+        display:block;
+        position:sticky; top: calc(var(--scroll-offset) + 8px);
+        background:var(--surface-800);
+        border:1px solid var(--border-700);
+        border-radius:16px;
+        padding:1rem;
+      }
     }
-    .toc h2{margin:.25rem 0 0.5rem;font-size:1rem;color:var(--text-100)}
-    .toc nav ol{margin:0;padding-left:1.25rem}
-    .toc nav li{margin:.35rem 0}
-    .toc a{color:var(--text-300);text-decoration:none}
-    .toc a:hover{color:var(--brand-lime);text-decoration:underline;text-underline-offset:2px}
-    .toc a:focus-visible{outline:3px dotted var(--brand-primary-strong);outline-offset:2px}
+    .toc h2{
+      margin:0 0 .5rem;
+      font-size:1rem;
+      color:var(--text-100);
+    }
+    .toc ol{
+      list-style:none; margin:0; padding:0; display:grid; gap:.375rem;
+    }
+    .toc a{
+      display:block; padding:.375rem .5rem; border-radius:8px;
+      color:var(--text-300); text-decoration:none;
+    }
+    .toc a:hover{ color:#fff; background:rgba(163,230,53,.08); }
+    .toc a.active{ color:#fff; background:rgba(14,116,144,.18); }
 
     /* Mobile collapsible TOC */
     details.toc-mobile{
       display:block;
       background:var(--surface-800);
       border:1px solid var(--border-700);
-      border-radius:16px;
-      padding:.5rem .75rem;
-      margin: .75rem 0 0;
+      border-radius:12px;
+      margin-bottom:1rem;
     }
     details.toc-mobile > summary{
-      cursor:pointer; list-style:none; font-weight:800; color:var(--text-100);
+      cursor:pointer; list-style:none;
+      padding:.75rem 1rem; font-weight:700;
+      display:flex; align-items:center; justify-content:space-between;
     }
-    details.toc-mobile > summary::-webkit-details-marker{display:none}
-    details.toc-mobile nav{padding:.5rem 0 .25rem}
-    details.toc-mobile ol{margin:0;padding-left:1.25rem}
-    details.toc-mobile a{color:var(--text-300);text-decoration:none}
-    details.toc-mobile a:hover{color:var(--brand-lime);text-decoration:underline;text-underline-offset:2px}
-    @media (min-width:960px){
-      details.toc-mobile{display:none}
+    details.toc-mobile[open] > summary{ border-bottom:1px solid var(--border-700); }
+    details.toc-mobile nav{ padding:.5rem .75rem 1rem; }
+    details.toc-mobile ol{ list-style:none; margin:0; padding:0; display:grid; gap:.25rem; }
+    details.toc-mobile a{
+      display:block; padding:.5rem .5rem; border-radius:8px; color:var(--text-300);
+    }
+    details.toc-mobile a:hover{ color:#fff; background:rgba(163,230,53,.08); }
+    @media (min-width:980px){
+      details.toc-mobile{ display:none; } /* desktop hides the collapsible */
     }
 
-    /* Content */
-    article.content{background:transparent;border:1px solid var(--border-700);border-radius:16px;padding:clamp(1rem,1.5vw + .5rem,1.5rem);overflow-x:hidden}
-    article.content > *:first-child{margin-top:0}
-    article.content > *{max-width:var(--content-max)}
+    /* =================== Content =================== */
+    .doc{
+      background:var(--surface-800);
+      border:1px solid var(--border-700);
+      border-radius:16px;
+      padding:clamp(1rem, 1.5vw + 1rem, 2rem);
+    }
 
-    h2{color:var(--text-100);margin:1.75rem 0 .5rem;font-size:1.25rem}
-    h2::after{content:"";display:block;height:2px;width:84px;margin:.5rem 0 0;background:linear-gradient(90deg,var(--brand-lime),var(--brand-orange),var(--brand-purple));border-radius:2px;opacity:.95}
-    p,li{color:var(--text-300)}
-    a.inline{color:var(--brand-primary-strong)}
-    a.inline:hover{color:var(--brand-lime);text-decoration:underline;text-underline-offset:2px}
+    .doc h1{
+      margin:.25rem 0 1rem;
+      font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+      line-height:1.2;
+      text-align:left;
+      color:#fff;
+      background:linear-gradient(90deg,var(--brand-lime) 0%,var(--brand-orange) 35%,var(--brand-purple) 70%,var(--brand-lime) 100%);
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
+    }
 
-    /* Lists */
-    ol{padding-left:1.25rem}
-    li{margin:.35rem 0}
+    .meta{
+      color:var(--text-500);
+      font-size:.95rem;
+      display:flex; gap:.5rem; flex-wrap:wrap;
+      border-bottom:1px dashed var(--border-700);
+      padding-bottom:.75rem; margin-bottom:1rem;
+    }
 
-    /* Callouts / contact block */
-    .callout{background:linear-gradient(180deg,rgba(14,116,144,.14),rgba(14,116,144,.06)) padding-box,
-             conic-gradient(from 30deg,rgba(163,230,53,.45),rgba(255,107,53,.45),rgba(167,139,250,.45),rgba(163,230,53,.45)) border-box;
-             border:2px solid transparent;border-radius:14px;padding:.75rem .9rem;color:var(--text-100)}
+    .doc section{
+      padding:1rem 0;
+      border-bottom:1px dashed var(--border-700);
+    }
+    .doc section:last-of-type{ border-bottom:none; }
+    .doc h2{
+      margin:.25rem 0 .5rem;
+      font-size: clamp(1.1rem, 1rem + .4vw, 1.35rem);
+      color:var(--text-100);
+      scroll-margin-top: var(--scroll-offset);
+    }
+    .doc p{ margin:.5rem 0; color:var(--text-300); }
+    .doc ul{ margin:.5rem 0 .5rem 1.1rem; color:var(--text-300); }
+    .doc li{ margin:.25rem 0; }
+    .callout{
+      background:linear-gradient(180deg, rgba(14,116,144,.12), rgba(14,116,144,.06)) padding-box,
+                 conic-gradient(from 20deg, rgba(163,230,53,.35), rgba(167,139,250,.35), rgba(255,107,53,.35), rgba(163,230,53,.35)) border-box;
+      border:2px solid transparent; border-radius:12px; padding:.75rem .9rem; color:var(--text-100);
+    }
 
-    /* Footer */
-    footer{border-top:1px solid var(--border-700);background:var(--surface-900);color:var(--text-300)}
-    .foot{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:1rem 0;flex-wrap:wrap}
-    .foot a{color:var(--brand-primary)}
-    .foot a:hover{color:var(--brand-lime);text-decoration:underline;text-underline-offset:2px}
+    footer{
+      border-top:1px solid var(--border-700);
+      color:var(--text-300);
+      padding:1rem 0;
+      text-align:center;
+    }
 
-    /* Accessibility */
-    a:focus-visible, button:focus-visible{outline:3px dotted var(--brand-primary-strong);outline-offset:2px}
-
-    /* Prevent layout quirks on small screens */
-    *{box-sizing:border-box}
+    .visually-hidden{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
   </style>
 </head>
 <body>
+  <a href="#content" class="visually-hidden">Skip to content</a>
+
   <div class="frame">
     <header>
       <div class="container nav">
-        <a class="brand" href="index.html" aria-label="TaaPlay home">
-          <img src="assets/brand/taaplay-logo-horiz.png" alt="TaaPlay" loading="eager" decoding="async"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block'">
-          <span class="brand-name" style="display:none">TaaPlay</span>
+        <a class="brand" href="index.html" aria-label="Back to TaaPlay home">
+          <span class="brand-logo">
+            <img src="assets/brand/taaplay-logo-horiz.png"
+                 srcset="assets/brand/taaplay-logo-horiz@2x.png 2x"
+                 alt="TaaPlay" loading="eager" decoding="async" />
+          </span>
+          <span class="brand-name">TaaPlay</span>
         </a>
-        <a class="back-link" href="index.html">← Back to site</a>
+        <nav aria-label="Site">
+          <a href="index.html">Home</a>
+        </nav>
       </div>
     </header>
 
-    <main class="container hero">
-      <h1>Privacy Notice — TaaPlay (Draft)</h1>
-      <p class="meta">Effective date: 14 August 2025 · Contact: <a class="inline" href="mailto:hello@taaplay.com">hello@taaplay.com</a></p>
+    <main class="container" id="content">
+      <div class="grid">
+        <!-- Mobile TOC -->
+        <details class="toc-mobile">
+          <summary>On this page</summary>
+          <nav aria-label="On this page">
+            <ol>
+              <li><a href="#s1">Who we are</a></li>
+              <li><a href="#s2">Scope</a></li>
+              <li><a href="#s3">What we collect</a></li>
+              <li><a href="#s4">Why we process</a></li>
+              <li><a href="#s5">Lawful basis (Sec 11)</a></li>
+              <li><a href="#s6">Direct marketing (Sec 69)</a></li>
+              <li><a href="#s7">Processors</a></li>
+              <li><a href="#s8">Cookies & analytics</a></li>
+              <li><a href="#s9">Cross-border transfers</a></li>
+              <li><a href="#s10">Security</a></li>
+              <li><a href="#s11">Retention</a></li>
+              <li><a href="#s12">Your rights</a></li>
+              <li><a href="#s13">Children’s privacy</a></li>
+              <li><a href="#s14">Updates</a></li>
+            </ol>
+          </nav>
+        </details>
 
-      <!-- Mobile TOC (collapsible) -->
-      <details class="toc-mobile">
-        <summary>On this page</summary>
-        <nav aria-label="Table of contents">
-         
+        <!-- Desktop TOC -->
+        <aside class="toc" aria-label="On this page">
+          <h2>On this page</h2>
+          <ol>
+            <li><a href="#s1">Who we are</a></li>
+            <li><a href="#s2">Scope</a></li>
+            <li><a href="#s3">What we collect</a></li>
+            <li><a href="#s4">Why we process</a></li>
+            <li><a href="#s5">Lawful basis (Sec 11)</a></li>
+            <li><a href="#s6">Direct marketing (Sec 69)</a></li>
+            <li><a href="#s7">Processors</a></li>
+            <li><a href="#s8">Cookies & analytics</a></li>
+            <li><a href="#s9">Cross-border transfers</a></li>
+            <li><a href="#s10">Security</a></li>
+            <li><a href="#s11">Retention</a></li>
+            <li><a href="#s12">Your rights</a></li>
+            <li><a href="#s13">Children’s privacy</a></li>
+            <li><a href="#s14">Updates</a></li>
+          </ol>
+        </aside>
+
+        <!-- Document -->
+        <article class="doc">
+          <h1>Privacy Notice — TaaPlay</h1>
+          <div class="meta">
+            <span><strong>Effective date:</strong> 14 August 2025</span>
+            <span aria-hidden="true">•</span>
+            <span><strong>Contact:</strong> <a href="mailto:hello@taaplay.com">hello@taaplay.com</a></span>
+          </div>
+
+          <section id="s1">
+            <h2>1) Who we are</h2>
+            <p>“TaaPlay” (“we”, “us”) is developing an early-learning platform for South African families and ECD practitioners. For the early-access waitlist, TaaPlay is the responsible party under the Protection of Personal Information Act, 2013 (POPIA). Our contact email is above.</p>
+          </section>
+
+          <section id="s2">
+            <h2>2) Scope</h2>
+            <p>This notice applies to the early-access landing page and waitlist form and describes how we process the personal information you submit there. It does not cover future in-app features; those will have an expanded notice.</p>
+          </section>
+
+          <section id="s3">
+            <h2>3) What we collect on this page</h2>
+            <ul>
+              <li>Email address (required)</li>
+              <li>Role (ECD practitioner/teacher; parent/caregiver; centre owner/principal; NGO/programme manager; other)</li>
+              <li>Province (South Africa)</li>
+              <li>Preferred language (one of SA’s 11 official languages)</li>
+              <li>Top need (free-text, optional)</li>
+              <li>A required consent checkbox confirming you want to hear from us about early access and related ECD resources.</li>
+            </ul>
+            <p>We do not intentionally collect children’s personal information on this page.</p>
+          </section>
+
+          <section id="s4">
+            <h2>4) Why we process your information (purpose)</h2>
+            <ul>
+              <li>To register your interest in early access, manage the waitlist, and send onboarding emails.</li>
+              <li>To segment invitations (e.g., by role, province, or preferred language) and prepare a relevant starter pack.</li>
+              <li>To measure basic, privacy-respecting engagement with the page (if we enable analytics; see §8).</li>
+            </ul>
+            <p>These purposes align with POPIA’s conditions for lawful processing (purpose specification, minimality, openness, and security).</p>
+          </section>
+
+          <section id="s5">
+            <h2>5) Our lawful justification under POPIA (Section 11)</h2>
+            <p>We process your information primarily on the grounds of consent (you actively opt in) and, where appropriate, legitimate interests (e.g., operating a waitlist you asked to join). POPIA recognises consent and legitimate interests, among other grounds, as lawful justifications for processing. You may withdraw consent at any time; prior lawful processing remains unaffected.</p>
+          </section>
+
+          <section id="s6">
+            <h2>6) Direct marketing rules (Section 69)</h2>
+            <p>Email messages about early access and related ECD resources are direct marketing. Under POPIA, this is allowed only with prior consent (or certain existing customer circumstances). We obtain your consent via the checkbox and include an unsubscribe link in each message.</p>
+          </section>
+
+          <section id="s7">
+            <h2>7) What we share and with whom (processors)</h2>
+            <p>We do not sell your personal information. We use trusted service providers to run the waitlist and (optionally) analytics:</p>
+            <ul>
+              <li><strong>Email & waitlist management:</strong> ConvertKit — processes your email and the form fields on our behalf to deliver emails and manage subscription status.</li>
+              <li><strong>Analytics (optional):</strong> Plausible Analytics — if enabled, it is cookie-less and designed not to collect personal data, providing aggregated page metrics only.</li>
+            </ul>
+            <p>We will update this section if we add or change processors.</p>
+          </section>
+
+          <section id="s8">
+            <h2>8) Cookies and analytics</h2>
+            <p>We currently run a lightweight, static page. If we enable Plausible, it uses no cookies and does not collect personally identifiable information; its metrics are aggregated and privacy-friendly.</p>
+          </section>
+
+          <section id="s9">
+            <h2>9) Cross-border transfers (Section 72)</h2>
+            <p>Some processors may store or process data outside South Africa (e.g., in the United States or the EU). When we transfer information cross-border, we do so in line with Section 72 of POPIA—for example, by using contracts and other safeguards to ensure adequate protection in the destination country.</p>
+          </section>
+
+          <section id="s10">
+            <h2>10) Security</h2>
+            <p>We take appropriate technical and organisational measures to protect your information (e.g., limiting access, using encrypted transport, and selecting reputable processors). While no system is perfectly secure, we continually review and improve our controls in line with POPIA’s security safeguard conditions.</p>
+          </section>
+
+          <section id="s11">
+            <h2>11) Retention</h2>
+            <p>We keep waitlist information only as long as necessary for early-access onboarding and to meet legal or operational requirements, after which we delete or de-identify it. Practically, we aim to remove dormant waitlist records within 24 months of inactivity or sooner on request, consistent with POPIA’s purpose-specification and retention rules.</p>
+          </section>
+
+          <section id="s12">
+            <h2>12) Your rights</h2>
+            <p>Under POPIA, you can request to access, correct, or delete your personal information, object to processing, or withdraw consent. Email <a href="mailto:hello@taaplay.com">hello@taaplay.com</a> to exercise these rights. You also have the right to lodge a complaint with the Information Regulator (South Africa): <a href="mailto:enquiries@inforegulator.org.za">enquiries@inforegulator.org.za</a>; complaints: <a href="mailto:POPIAComplaints@inforegulator.org.za">POPIAComplaints@inforegulator.org.za</a>.</p>
+          </section>
+
+          <section id="s13">
+            <h2>13) Children’s privacy</h2>
+            <p>This page is intended for adults (parents/caregivers and practitioners). We do not knowingly collect personal information from children on the waitlist. If we learn we have done so inadvertently, we will delete it promptly. Any future features involving children’s information will include age-appropriate notices and competent-person consent consistent with POPIA.</p>
+          </section>
+
+          <section id="s14">
+            <h2>14) Updates to this notice</h2>
+            <p>We may update this notice from time to time. We will change the effective date above and, where appropriate, provide a more prominent notice of material changes.</p>
+          </section>
+
+          <p class="callout" style="margin-top:1rem;">
+            Questions? Email <a href="mailto:hello@taaplay.com">hello@taaplay.com</a>.
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="container">
+      <div>&copy; TaaPlay 2025 • <a href="index.html">Back to home</a></div>
+    </footer>
+  </div>
+</body>
+</html>
