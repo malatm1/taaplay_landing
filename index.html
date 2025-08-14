@@ -1,203 +1,531 @@
 <!DOCTYPE html>
 <html lang="en-ZA">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TaaPlay — Play today. Thrive tomorrow.</title>
-<meta name="description" content="TaaPlay is a South African early-learning companion blending play-based activities, local-language stories, and educator-approved guidance—built for low-data realities." />
-<meta property="og:title" content="TaaPlay — Play today. Thrive tomorrow." />
-<meta property="og:description" content="Join the early-access waitlist for South Africa’s early-learning companion: play-based, local-language, low-data, CAPS-aware." />
-<meta property="og:type" content="website" />
-<link rel="preload" as="image" href="assets/brand/taaplay-logo-horiz.png" imagesrcset="assets/brand/taaplay-logo-horiz@2x.png 2x">
-<link rel="preload" as="image" href="assets/brand/taaplay-mark.png">
-<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-<meta property="og:image" content="assets/brand/taaplay-og.png" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="theme-color" content="#0E7490" />
-<link rel="mask-icon" href="assets/brand/favicon.svg" color="#0E7490" />
-<meta name="msapplication-TileColor" content="#0E7490" />
-<meta property="og:image:alt" content="TaaPlay brand preview in deep teal, lime, orange and soft purple" />
-<style>
-:root{--surface-900:#0B0F19;--surface-800:#111827;--border-700:#1F2937;--text-100:#E5E7EB;--text-300:#CBD5E1;--text-500:#94A3B8;--brand-primary:#0E7490;--brand-primary-strong:#0A5E72;--brand-lime:#A3E635;--brand-orange:#FF6B35;--brand-purple:#A78BFA}
-html,body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,'Noto Sans','Liberation Sans',sans-serif;line-height:1.6;color:#111827;background:#000}
-.container{width:min(1120px,92vw);margin-inline:auto}.section{padding:clamp(2.5rem,3vw + 1rem,5rem) 0}
-a{color:var(--brand-primary-strong)}a:hover{color:var(--brand-lime);text-decoration:underline;text-underline-offset:2px}a:visited{color:var(--brand-purple)}.frame a{color:var(--brand-primary)}.frame a:hover{color:var(--brand-lime);text-decoration:underline;text-underline-offset:2px}a:focus,button:focus{outline:3px dotted var(--brand-primary-strong);outline-offset:2px}
-.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.frame{background:var(--surface-900);color:var(--text-100);border:1.5px solid var(--border-700);border-radius:24px;width:min(1200px,96vw);margin:clamp(8px,2.5vw,28px) auto;box-shadow:0 10px 40px rgba(0,0,0,.45)}
-/* Ambient video (surround) */
-.ambient-bg{
-  position: fixed;
-  top: 0; right: 0; bottom: 0; left: 0;   /* replace inset:0 for older Edge/Safari */
-  width: 100vw; height: 100vh;            /* ensure full-viewport sizing */
-  object-fit: cover; object-position: center center;
-  z-index: 0; opacity: .18;
-  filter: saturate(1.05) contrast(1.05) brightness(.9);
-  pointer-events: none;
-}
-.frame{position:relative;z-index:1}
-header{background:var(--surface-900);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--border-700);border-top-left-radius:24px;border-top-right-radius:24px}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.875rem 0}
-.brand{display:flex;align-items:center;gap:.625rem;text-decoration:none}.brand-name{font-weight:800;letter-spacing:.2px;color:var(--text-100)}
-.nav-cta{display:none}@media(min-width:720px){.nav-cta{display:block}}
-.btn{appearance:none;border:none;cursor:pointer;border-radius:999px;padding:.875rem 1.25rem;font-weight:700;letter-spacing:.2px}
-.btn-primary{border:2px solid transparent;background:linear-gradient(180deg,var(--brand-orange),#e65f2f) padding-box,linear-gradient(135deg,var(--brand-lime),var(--brand-purple)) border-box;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 18px rgba(0,0,0,.25);transition:filter .2s ease,box-shadow .2s ease,transform .05s ease}
-.btn-primary:hover{filter:brightness(.95);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 22px rgba(0,0,0,.28)}
-.btn-primary:active{transform:translateY(1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 6px 16px rgba(0,0,0,.24)}
-.btn-outline{background:transparent;color:var(--text-100);border:2px solid var(--text-100);transition:box-shadow .2s ease,transform .05s ease,border-color .2s ease,background .2s ease}
-.btn-outline:hover{border-color:transparent;background:linear-gradient(var(--surface-900),var(--surface-900)) padding-box,linear-gradient(135deg,var(--brand-primary),var(--brand-purple)) border-box}
-.btn-outline:active{transform:translateY(1px)}.btn-primary:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(163,230,53,.35),0 0 0 6px rgba(14,116,144,.25)}
-.hero{display:grid;gap:2rem;align-items:center;justify-items:center;text-align:center}
-@media(min-width:980px){.hero{grid-template-columns:1fr}}
-.eyebrow{color:var(--brand-lime);font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.18em}
-.h1{font-size:clamp(2rem,3vw + 1rem,3.25rem);line-height:1.15;margin:.25rem 0 .5rem}
-.gradient-text{background:linear-gradient(90deg,var(--brand-lime) 0%,var(--brand-orange) 35%,var(--brand-purple) 70%,var(--brand-lime) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-@media(prefers-contrast:more){.gradient-text{-webkit-text-fill-color:#fff;color:#fff;background:none}}
-@media(forced-colors:active){.gradient-text{-webkit-text-fill-color:ButtonText;color:ButtonText;background:none}}
-.lead{color:var(--text-300);font-size:clamp(1rem,.5vw + .9rem,1.125rem)}
-section h2{color:var(--text-100)}
-section h2::after{content:"";display:block;height:2px;width:84px;margin:.5rem auto 0;background:linear-gradient(90deg,var(--brand-lime),var(--brand-orange),var(--brand-purple));border-radius:2px;opacity:.95}
-.badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
-.badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(180deg,rgba(14,116,144,.14),rgba(14,116,144,.06)) padding-box,conic-gradient(from 20deg,rgba(163,230,53,.5),rgba(167,139,250,.5),rgba(255,107,53,.5),rgba(163,230,53,.5)) border-box;border:2px solid transparent;border-radius:999px;padding:.5rem .75rem;font-weight:600;color:var(--text-100)}
-.badge svg{width:18px;height:18px;color:var(--brand-lime)}
-.hero-art{position:relative;min-height:280px}
-.blob{position:absolute;inset:0;filter:drop-shadow(0 20px 40px rgba(0,0,0,.35));border-radius:28px;background:radial-gradient(120% 90% at 10% 10%,#0b0f19 0%,#0b0f19 35%,#1f2937 60%,#212a3b 100%)}
-.art-overlay{position:absolute;inset:12% 8%;border-radius:22px;background:conic-gradient(from 140deg at 50% 50%,rgba(14,116,144,.16),rgba(167,139,250,.12),rgba(163,230,53,.10),rgba(255,107,53,.10),rgba(14,116,144,.16));display:grid;place-items:center}
-.art-overlay .stamp{background:linear-gradient(180deg,rgba(14,116,144,.14),rgba(14,116,144,.06)) padding-box,conic-gradient(from 30deg,rgba(163,230,53,.55),rgba(255,107,53,.55),rgba(167,139,250,.55),rgba(163,230,53,.55)) border-box;border:2px solid transparent;border-radius:9999px;padding:1rem 1.25rem;text-align:center;color:var(--text-100);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(14,116,144,.18)}
-.stamp-title{display:block;color:var(--text-100);font-weight:800;font-size:1.15rem;letter-spacing:.01em}.micro{font-size:.85rem;color:var(--text-500)}
-.sticky-cta{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:60;background:var(--surface-900);color:var(--text-100);border:1px solid var(--border-700);border-bottom:0;border-radius:14px 14px 0 0;padding:.5rem .75rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;width:min(1200px,96vw)}
-.sticky-cta .btn{width:100%}@media(min-width:720px){.sticky-cta{display:none}}
-.value-grid{display:grid;gap:1rem}@media(min-width:720px){.value-grid{grid-template-columns:repeat(2,1fr)}}@media(min-width:980px){.value-grid{grid-template-columns:repeat(4,1fr)}}
-.card{background:var(--surface-800);border:1px solid var(--border-700);border-radius:16px;padding:1rem;display:grid;gap:.5rem}
-.card h3{margin:0;font-size:1.05rem;color:var(--text-100)}.card p{margin:0;color:var(--text-300);font-size:.98rem}.icon{width:28px;height:28px;color:var(--text-100)}
-.form-wrap{background:var(--surface-800);border:1px solid var(--border-700);border-radius:20px;padding:clamp(1rem,1.5vw + 1rem,2rem)}
-form{display:grid;gap:1rem}label{font-weight:600}.help{color:var(--text-300);font-size:.9rem}
-input[type=email],select,textarea{width:100%;padding:.8rem .9rem;border-radius:12px;border:1px solid #334155;background:#0f172a;color:var(--text-100);-webkit-appearance:none;-moz-appearance:none;appearance:none;background-clip:padding-box}
-input::placeholder,textarea::placeholder{color:#64748B}
-select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right .9rem center;background-size:14px;padding-right:2.25rem}
-input[type=email]:hover,select:hover,textarea:hover{border-color:var(--brand-primary-strong)}
-textarea{min-height:120px;resize:vertical}
-.form-row{display:grid;gap:1rem}@media(min-width:720px){.grid-2{grid-template-columns:repeat(2,1fr)}}
-.consent{display:flex;align-items:flex-start;gap:.75rem;background:transparent;border:none;border-radius:12px;padding:.75rem}
-.actions{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center}.btn-lg{padding:1rem 1.5rem;font-size:1.05rem}
-input:invalid,select:invalid{border-color:#fb7185}
-.form-wrap input:focus,.form-wrap select:focus,.form-wrap textarea:focus{outline:none;border-color:var(--brand-lime);box-shadow:0 0 0 2px rgba(11,15,25,1),0 0 0 4px var(--brand-lime)}
-input:invalid:focus,select:invalid:focus{outline-color:#fb7185;border-color:#fb7185;box-shadow:0 0 0 2px rgba(11,15,25,1),0 0 0 4px rgba(251,113,133,.7)}
-details{background:var(--surface-800);border:1px solid var(--border-700);border-radius:14px;padding:.875rem 1rem;color:var(--text-100)}
-details+details{margin-top:.75rem}summary{cursor:pointer;font-weight:700}details[open]{border-color:#334155}
-footer{border-top:1px solid var(--border-700);background:var(--surface-900);color:var(--text-300)}.foot{display:flex;align-items:center;gap:.75rem;justify-content:center;padding:1rem 0;flex-wrap:wrap}.foot [aria-hidden="true"]{opacity:.55;color:var(--text-500)}
-/* Logo sizing & fallback */
-.brand-logo{display:flex;align-items:center;background:none}
-.brand-logo img{height:40px;width:auto;border-radius:0}
-.brand-text-fallback{display:none;font-weight:800;letter-spacing:.2px;color:var(--text-100);font-size:1.15rem}
-</style>
-<script>(function(){function isNoise(t){if(!t)return false;var s=(''+t).toLowerCase();return s.indexOf('metamask')>-1||s.indexOf('wallet')>-1}window.addEventListener('error',function(e){if(isNoise(e&&e.message)){try{e.preventDefault()}catch(_){} }},true);window.addEventListener('unhandledrejection',function(e){var r=e&&e.reason?(e.reason.message||''+e.reason):'';if(isNoise(r)){try{e.preventDefault()}catch(_){} }},true)})();</script>
-<script>(function(){window.__logoFallback=function(img){if(!img)return;var tried=img.getAttribute('data-tried-mark')==='1';if(!tried){img.setAttribute('data-tried-mark','1');img.onerror=function(){window.__logoFallback&&__logoFallback(img)};img.removeAttribute('srcset');img.src='assets/brand/taaplay-mark.png';img.style.height='36px';img.style.width='36px';img.style.borderRadius='10px'}else{img.style.display='none';try{var t=img.parentElement&&img.parentElement.querySelector('.brand-text-fallback');if(t){t.style.display='inline-block'}}catch(_){}}};})();</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TaaPlay — Play today. Thrive tomorrow.</title>
+  <meta name="description" content="TaaPlay is a South African early-learning companion blending play-based activities, local-language stories, and educator-approved guidance—built for low-data realities." />
+  <meta property="og:title" content="TaaPlay — Play today. Thrive tomorrow." />
+  <meta property="og:description" content="Join the early-access waitlist for South Africa’s early-learning companion: play-based, local-language, low-data, CAPS-aware." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/brand/taaplay-og.png" />
+  <meta property="og:image:alt" content="TaaPlay brand preview in deep teal, lime, orange and soft purple" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0E7490" />
+  <link rel="mask-icon" href="assets/brand/favicon.svg" color="#0E7490" />
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+  <link rel="preload" as="image" href="assets/brand/taaplay-logo-horiz.png" imagesrcset="assets/brand/taaplay-logo-horiz@2x.png 2x">
+  <link rel="preload" as="image" href="assets/brand/taaplay-mark.png">
+
+  <style>
+    :root{
+      /* Dark UI */
+      --surface-900:#0B0F19; --surface-800:#111827; --border-700:#1F2937;
+      --text-100:#E5E7EB; --text-300:#CBD5E1; --text-500:#94A3B8;
+      /* Brand palette */
+      --brand-primary:#0E7490; --brand-primary-strong:#0A5E72;
+      --brand-lime:#A3E635; --brand-orange:#FF6B35; --brand-purple:#A78BFA;
+      --neutral-offwhite:#F7F7F5; --neutral-light:#E5E7EB;
+    }
+    *{box-sizing:border-box}
+    html,body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,'Noto Sans','Liberation Sans',sans-serif;line-height:1.6;background:#000;color:#111827}
+    .container{width:min(1120px,92vw);margin-inline:auto}
+    .section{padding:clamp(2.5rem,3vw + 1rem,5rem) 0}
+    a{color:var(--brand-primary-strong)} a:hover{color:var(--brand-lime);text-decoration:underline;text-underline-offset:2px}
+    a:visited{color:var(--brand-purple)} a:focus,button:focus{outline:3px dotted var(--brand-primary-strong);outline-offset:2px}
+
+    /* Ambient video fills full viewport behind frame */
+    .ambient-bg{
+      position:fixed; top:0; right:0; bottom:0; left:0; width:100vw; height:100vh;
+      object-fit:cover; object-position:center center; z-index:0; opacity:.18;
+      filter:saturate(1.05) contrast(1.05) brightness(.9); pointer-events:none;
+    }
+
+    .frame{position:relative; z-index:1; background:var(--surface-900); color:var(--text-100);
+      border:1.5px solid var(--border-700); border-radius:24px; width:min(1200px,96vw);
+      margin:clamp(8px,2.5vw,28px) auto; box-shadow:0 10px 40px rgba(0,0,0,.45);
+    }
+
+    header{background:var(--surface-900); position:sticky; top:0; z-index:20;
+      border-bottom:1px solid var(--border-700); border-top-left-radius:24px; border-top-right-radius:24px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.875rem 0}
+    .brand{display:flex;align-items:center;gap:.625rem;text-decoration:none}
+    .brand-name{font-weight:800;letter-spacing:.2px;color:var(--text-100)}
+    .brand-logo{display:flex;align-items:center}
+    .brand-logo img{height:40px;width:auto;border-radius:0;display:block}
+    .brand-text-fallback{display:none;font-weight:800;letter-spacing:.2px;color:var(--text-100);font-size:1.15rem}
+    .nav-cta{display:none} @media (min-width:720px){.nav-cta{display:block}}
+
+    .btn{appearance:none;border:none;cursor:pointer;border-radius:999px;padding:.875rem 1.25rem;font-weight:700;letter-spacing:.2px}
+    .btn-primary{
+      border:2px solid transparent;
+      background:linear-gradient(180deg,var(--brand-orange),#e65f2f) padding-box,
+                 linear-gradient(135deg,var(--brand-lime),var(--brand-purple)) border-box;
+      color:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 8px 18px rgba(0,0,0,.25);
+      transition:filter .2s ease, box-shadow .2s ease, transform .05s ease;
+    }
+    .btn-primary:hover{filter:brightness(.95); box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 22px rgba(0,0,0,.28)}
+    .btn-primary:active{transform:translateY(1px)}
+    .btn-primary:focus-visible{outline:none; box-shadow:0 0 0 3px rgba(163,230,53,.35), 0 0 0 6px rgba(14,116,144,.25)}
+    .btn-outline{background:transparent;color:var(--text-100);border:2px solid var(--text-100);
+      transition:box-shadow .2s ease,transform .05s ease,border-color .2s ease,background .2s ease}
+    .btn-outline:hover{border-color:transparent;background:linear-gradient(var(--surface-900),var(--surface-900)) padding-box,
+                                               linear-gradient(135deg,var(--brand-primary),var(--brand-purple)) border-box}
+
+    .hero{display:grid;gap:2rem;align-items:center;justify-items:center;text-align:center}
+    @media (min-width:980px){.hero{grid-template-columns:1fr}}
+    .eyebrow{color:var(--brand-lime);font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.18em}
+    .h1{font-size:clamp(2rem,3vw + 1rem,3.25rem);line-height:1.15;margin:.25rem 0 .5rem}
+    .gradient-text{background:linear-gradient(90deg,var(--brand-lime) 0%,var(--brand-orange) 35%,var(--brand-purple) 70%,var(--brand-lime) 100%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+    @media (prefers-contrast:more){.gradient-text{-webkit-text-fill-color:#fff;color:#fff;background:none}}
+    @media (forced-colors:active){.gradient-text{-webkit-text-fill-color:ButtonText;color:ButtonText;background:none}}
+    .lead{color:var(--text-300);font-size:clamp(1rem,.5vw + .9rem,1.125rem)}
+
+    section h2{color:var(--text-100)}
+    section h2::after{content:"";display:block;height:2px;width:84px;margin:.5rem auto 0;
+      background:linear-gradient(90deg,var(--brand-lime),var(--brand-orange),var(--brand-purple));border-radius:2px;opacity:.95}
+
+    .badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;justify-content:center}
+    .badge{display:inline-flex;align-items:center;gap:.5rem;
+      background:linear-gradient(180deg,rgba(14,116,144,.14),rgba(14,116,144,.06)) padding-box,
+                conic-gradient(from 20deg,rgba(163,230,53,.5),rgba(167,139,250,.5),rgba(255,107,53,.5),rgba(163,230,53,.5)) border-box;
+      border:2px solid transparent;border-radius:999px;padding:.5rem .75rem;font-weight:600;color:var(--text-100)}
+    .badge svg{width:18px;height:18px;color:var(--brand-lime)}
+    .hero-art{position:relative;min-height:280px}
+    .blob{position:absolute;inset:0;border-radius:28px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.35));
+      background:radial-gradient(120% 90% at 10% 10%,#0b0f19 0%,#0b0f19 35%,#1f2937 60%,#212a3b 100%)}
+    .art-overlay{position:absolute;inset:12% 8%;border-radius:22px;display:grid;place-items:center;
+      background:conic-gradient(from 140deg at 50% 50%,rgba(14,116,144,.16),rgba(167,139,250,.12),rgba(163,230,53,.10),rgba(255,107,53,.10),rgba(14,116,144,.16))}
+    .art-overlay .stamp{
+      background:linear-gradient(180deg,rgba(14,116,144,.14),rgba(14,116,144,.06)) padding-box,
+                 conic-gradient(from 30deg,rgba(163,230,53,.55),rgba(255,107,53,.55),rgba(167,139,250,.55),rgba(163,230,53,.55)) border-box;
+      border:2px solid transparent;border-radius:9999px;padding:1rem 1.25rem;text-align:center;color:var(--text-100);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 10px 30px rgba(14,116,144,.18)
+    }
+    .stamp-title{display:block;font-weight:800;font-size:1.15rem;letter-spacing:.01em;color:var(--text-100)}
+    .micro{font-size:.85rem;color:var(--text-500)}
+
+    .sticky-cta{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:60;background:var(--surface-900);
+      color:var(--text-100);border:1px solid var(--border-700);border-bottom:0;border-radius:14px 14px 0 0;
+      padding:.5rem .75rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;width:min(1200px,96vw)}
+    .sticky-cta .btn{width:100%} @media (min-width:720px){.sticky-cta{display:none}}
+
+    .value-grid{display:grid;gap:1rem} @media (min-width:720px){.value-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:980px){.value-grid{grid-template-columns:repeat(4,1fr)}}
+    .card{background:var(--surface-800);border:1px solid var(--border-700);border-radius:16px;padding:1rem;display:grid;gap:.5rem}
+    .card h3{margin:0;font-size:1.05rem;color:var(--text-100)}
+    .card p{margin:0;color:var(--text-300);font-size:.98rem}
+    .icon{width:28px;height:28px;color:var(--text-100)}
+
+    .form-wrap{background:var(--surface-800);border:1px solid var(--border-700);border-radius:20px;padding:clamp(1rem,1.5vw + 1rem,2rem)}
+    form{display:grid;gap:1rem} label{font-weight:600} .help{color:var(--text-300);font-size:.9rem}
+    input[type=email],select,textarea{
+      width:100%;padding:.8rem .9rem;border-radius:12px;border:1px solid #334155;background:#0f172a;color:var(--text-100);
+      -webkit-appearance:none;-moz-appearance:none;appearance:none;background-clip:padding-box}
+    input::placeholder,textarea::placeholder{color:#64748B}
+    select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat:no-repeat;background-position:right .9rem center;background-size:14px;padding-right:2.25rem}
+    input[type=email]:hover,select:hover,textarea:hover{border-color:var(--brand-primary-strong)}
+    textarea{min-height:120px;resize:vertical}
+    .form-row{display:grid;gap:1rem} @media (min-width:720px){.grid-2{grid-template-columns:repeat(2,1fr)}}
+    .consent{display:flex;align-items:flex-start;gap:.75rem;background:transparent;border:none;border-radius:12px;padding:.75rem}
+    .actions{display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center}
+    .btn-lg{padding:1rem 1.5rem;font-size:1.05rem}
+
+    /* WCAG-friendly focus and invalid */
+    input:invalid,select:invalid{border-color:#fb7185}
+    .form-wrap input:focus,.form-wrap select:focus,.form-wrap textarea:focus{
+      outline:none;border-color:var(--brand-lime);
+      box-shadow:0 0 0 2px rgba(11,15,25,1), 0 0 0 4px var(--brand-lime)
+    }
+    input:invalid:focus,select:invalid:focus{
+      outline-color:#fb7185;border-color:#fb7185;
+      box-shadow:0 0 0 2px rgba(11,15,25,1), 0 0 0 4px rgba(251,113,133,.7)
+    }
+
+    details{background:var(--surface-800);border:1px solid var(--border-700);border-radius:14px;padding:.875rem 1rem;color:var(--text-100)}
+    details+details{margin-top:.75rem} summary{cursor:pointer;font-weight:700} details[open]{border-color:#334155}
+
+    footer{border-top:1px solid var(--border-700);background:var(--surface-900);color:var(--text-300)}
+    .foot{display:flex;align-items:center;gap:.75rem;justify-content:center;padding:1rem 0;flex-wrap:wrap}
+    .foot [aria-hidden="true"]{opacity:.55;color:var(--text-500)}
+
+    @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+
+  <!-- Quietly ignore wallet-extension noise (no UI) -->
+  <script>
+    (function(){
+      function isNoise(t){ if(!t) return false; t=(''+t).toLowerCase(); return t.includes('metamask') || t.includes('wallet'); }
+      window.addEventListener('error',function(e){ if(isNoise(e && e.message)){ try{ e.preventDefault(); }catch(_){} }},true);
+      window.addEventListener('unhandledrejection',function(e){ var r=e && e.reason ? (e.reason.message || String(e.reason)) : ''; if(isNoise(r)){ try{ e.preventDefault(); }catch(_){} }},true);
+    })();
+  </script>
+
+  <!-- Logo wordmark fallback: wordmark → square mark → text -->
+  <script>
+    (function(){
+      window.__logoFallback = function(img){
+        if(!img) return;
+        var tried = img.getAttribute('data-tried-mark') === '1';
+        if(!tried){
+          img.setAttribute('data-tried-mark','1');
+          img.onerror = function(){ window.__logoFallback && __logoFallback(img); };
+          img.removeAttribute('srcset');
+          img.src = 'assets/brand/taaplay-mark.png';
+          img.style.height='36px'; img.style.width='36px'; img.style.borderRadius='10px';
+        } else {
+          img.style.display='none';
+          var t = img.parentElement && img.parentElement.querySelector('.brand-text-fallback');
+          if(t){ t.style.display='inline-block'; }
+        }
+      };
+    })();
+  </script>
 </head>
 <body>
-<a href="#waitlist" class="visually-hidden">Skip to waitlist form</a>
-<!-- Ambient background video (surround) -->
-<video id="ambient" class="ambient-bg" muted loop playsinline preload="none" poster="assets/motion/hero-broll.jpg" aria-hidden="true" style="display:none"></video>
-<div id="app-frame" class="frame">
-<header>
-  <div class="container nav">
-    <a class="brand" href="#top" aria-label="TaaPlay home">
-      <div class="brand-logo"><img id="brandWordmark" src="assets/brand/taaplay-logo-horiz.png" srcset="assets/brand/taaplay-logo-horiz@2x.png 2x" alt="TaaPlay" loading="eager" decoding="async" onerror="window.__logoFallback&&__logoFallback(this)" /><span class="brand-text-fallback" aria-hidden="true">TaaPlay</span></div>
-      <span class="brand-name visually-hidden">TaaPlay</span>
-    </a>
-    <div class="nav-cta"><a class="btn btn-outline" href="#faq">Learn more</a></div>
-  </div>
-</header>
-<main id="top">
-  <section class="section">
-    <div class="container hero">
-      <div>
-        <div class="eyebrow" style="margin-bottom:.5rem">Early Access · South Africa</div>
-        <h1 class="h1 gradient-text">Play today. Thrive tomorrow.</h1>
-        <p class="lead" style="max-width:68ch;margin:0 auto">The South African early-learning companion that blends play-based activities, local-language stories, and educator-approved guidance—designed for low-data realities.</p>
+  <!-- Full-viewport ambient video (desktop only, gated by JS) -->
+  <video id="ambient" class="ambient-bg" muted loop playsinline preload="none" poster="assets/motion/hero-broll.jpg" aria-hidden="true" style="display:none"></video>
+
+  <div id="app-frame" class="frame">
+    <header>
+      <div class="container nav">
+        <a class="brand" href="#top" aria-label="TaaPlay home">
+          <div class="brand-logo">
+            <img id="brandWordmark"
+                 src="assets/brand/taaplay-logo-horiz.png"
+                 srcset="assets/brand/taaplay-logo-horiz@2x.png 2x"
+                 alt="TaaPlay"
+                 loading="eager" decoding="async"
+                 onerror="window.__logoFallback && __logoFallback(this)" />
+            <span class="brand-text-fallback" aria-hidden="true">TaaPlay</span>
+          </div>
+          <span class="brand-name visually-hidden">TaaPlay</span>
+        </a>
+        <div class="nav-cta">
+          <a class="btn btn-outline" href="#faq">Learn more</a>
+        </div>
       </div>
-      <div class="hero-art" aria-hidden="true" style="width:min(760px,92%);margin:0 auto">
-        <div class="blob"></div>
-        <div class="art-overlay">
-          <div class="stamp" style="max-width:720px;width:100%">
-            <strong class="stamp-title">Stories · Songs · Activities</strong>
-            <span class="micro">Inclusive · Mobile-first</span>
+    </header>
+
+    <main id="top">
+      <section class="section">
+        <div class="container hero">
+          <div>
+            <div class="eyebrow" style="margin-bottom:.5rem">Early Access · South Africa</div>
+            <h1 class="h1 gradient-text">Play today. Thrive tomorrow.</h1>
+            <p class="lead" style="max-width:68ch;margin:0 auto">
+              The South African early-learning companion that blends play-based activities, local-language stories,
+              and educator-approved guidance—designed for low-data realities.
+            </p>
+          </div>
+
+          <div class="hero-art" aria-hidden="true" style="width:min(760px,92%);margin:0 auto">
+            <div class="blob"></div>
+            <div class="art-overlay">
+              <div class="stamp" style="max-width:720px;width:100%">
+                <strong class="stamp-title">Stories · Songs · Activities</strong>
+                <span class="micro">Inclusive · Mobile-first</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta-row" style="margin-top:1.25rem;display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center">
+            <a class="btn btn-primary" href="#waitlist" data-testid="cta-primary">Join the waitlist</a>
+          </div>
+          <p class="micro" style="margin-top:.5rem">Free to join. We’ll email you when early access opens.</p>
+
+          <div class="badges" aria-label="Highlights">
+            <span class="badge">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7c0-2.21 4.03-4 9-4s9 1.79 9 4-4.03 4-9 4-9-1.79-9-4Z"/><path d="M3 12c0 2.21 4.03 4 9 4s9-1.79 9-4"/><path d="M3 17c0 2.21 4.03 4 9 4s9-1.79 9-4"/></svg>
+              Low-data
+            </span>
+            <span class="badge">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M20 22H6.5A2.5 2.5 0 0 1 4 19.5V5a2 2 0 0 1 2-2h14Z"/></svg>
+              CAPS-aware
+            </span>
+            <span class="badge">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h12"/><path d="M9 3v2"/><path d="m5 8 6 6"/><path d="m4 14 4-9 4 9"/><path d="M19 10v3"/><path d="M17 12h4"/></svg>
+              English now; isiZulu & Sepedi next
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <div class="sticky-cta" role="region" aria-label="Sticky join bar">
+        <span style="font-weight:700;color:var(--brand-primary)">Early access</span>
+        <a class="btn btn-primary" href="#waitlist" aria-label="Jump to waitlist form">Join the waitlist</a>
+      </div>
+
+      <section class="section" aria-labelledby="value-prop-h">
+        <div class="container">
+          <h2 id="value-prop-h" style="margin:0 0 1rem;text-align:center">What makes TaaPlay different</h2>
+          <div class="value-grid" role="list">
+            <article class="card" role="listitem">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H7l-4-4V5a2 2 0 0 1 2-2h7"/><path d="M19 2v4"/><path d="M17 4h4"/></svg>
+              <h3>Local languages first</h3>
+              <p>Stories, songs, and activities that reflect home languages and culture—English now; isiZulu and Sepedi next, with more to follow.</p>
+            </article>
+            <article class="card" role="listitem">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16"/><path d="M5 22V7h14v15"/><path d="M10 11h4"/></svg>
+              <h3>Play-based & CAPS-aware</h3>
+              <p>Age-appropriate activities aligned to early learning goals to support school readiness.</p>
+            </article>
+            <article class="card" role="listitem">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h4"/><path d="M18 12h4"/><path d="M7.5 7.5 4 4"/><path d="m20 20-3.5-3.5"/><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="3"/></svg>
+              <h3>Smart, simple, low-data</h3>
+              <p>Mobile-first, offline-friendly content so families and centres can learn anywhere.</p>
+            </article>
+            <article class="card" role="listitem">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20v-8"/><path d="M18 20v-5"/><path d="M6 20v-2"/><path d="M4 4h16v4H4z"/></svg>
+              <h3>For caregivers and practitioners</h3>
+              <p>Quick ideas for home; ready-to-use mini-lessons and tips for ECD classrooms.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="waitlist" class="section" aria-labelledby="waitlist-h">
+        <div class="container">
+          <h2 id="waitlist-h" style="margin:0 auto .5rem;text-align:center">Be first to play with TaaPlay</h2>
+          <p class="help" style="margin:0 auto;max-width:60ch;text-align:center">Tell us who you are and what you need most. We’ll tailor your early-access invite and starter pack.</p>
+
+          <div class="form-wrap">
+            <form id="early-access" action="#" method="post" autocomplete="on" novalidate>
+              <div class="form-row">
+                <div>
+                  <label for="email">Email address</label>
+                  <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="email-help" />
+                  <div id="email-help" class="help">We’ll only use this to contact you about early access.</div>
+                </div>
+              </div>
+
+              <div class="form-row grid-2">
+                <div>
+                  <label for="role">Your role</label>
+                  <select id="role" name="role" required>
+                    <option value="" selected disabled>Please select…</option>
+                    <option>ECD practitioner/Teacher</option>
+                    <option>Parent/Caregiver</option>
+                    <option>Centre Owner/Principal</option>
+                    <option>NGO/Programme Manager</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="province">South African province</label>
+                  <select id="province" name="province" required>
+                    <option value="" selected disabled>Please select…</option>
+                    <option>Eastern Cape</option>
+                    <option>Free State</option>
+                    <option>Gauteng</option>
+                    <option>KwaZulu-Natal</option>
+                    <option>Limpopo</option>
+                    <option>Mpumalanga</option>
+                    <option>Northern Cape</option>
+                    <option>North West</option>
+                    <option>Western Cape</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row grid-2">
+                <div>
+                  <label for="language">Preferred language</label>
+                  <select id="language" name="preferred_language" required>
+                    <option value="" selected disabled>Please select…</option>
+                    <option>isiZulu</option>
+                    <option>isiXhosa</option>
+                    <option>Afrikaans</option>
+                    <option>English</option>
+                    <option>Sepedi (Northern Sotho)</option>
+                    <option>Setswana</option>
+                    <option>Sesotho</option>
+                    <option>Xitsonga</option>
+                    <option>siSwati</option>
+                    <option>Tshivenda</option>
+                    <option>isiNdebele</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="need">What’s the #1 thing you need help with? <span class="help" aria-hidden="true" style="font-weight:400">(optional)</span></label>
+                  <textarea id="need" name="top_need" placeholder="e.g., age-4 activities in isiZulu; assessment checklists; offline stories"></textarea>
+                </div>
+              </div>
+
+              <!-- Honeypot -->
+              <div class="visually-hidden" aria-hidden="true">
+                <label for="taaplay_hp">Leave this field empty</label>
+                <input id="taaplay_hp" name="taaplay_hp" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <div class="consent">
+                <input id="consent" name="consent" type="checkbox" required aria-describedby="consent-help" />
+                <label for="consent" style="font-weight:600">I consent to TaaPlay processing my information to contact me about early access and related ECD resources. We respect your privacy and comply with POPIA. You can unsubscribe at any time.</label>
+              </div>
+              <div id="consent-help" class="help">Read our <a href="privacy.html" rel="noopener">Privacy Notice</a>.</div>
+
+              <div class="actions">
+                <button class="btn btn-primary btn-lg" type="submit" data-testid="submit">Join the waitlist</button>
+                <div id="form-response" class="help" role="status" aria-live="polite" style="min-height:1.25rem"></div>
+                <a href="#" class="help" aria-disabled="true" title="Coming soon">No email? Get a WhatsApp alert instead</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Thank-you modal -->
+      <div id="thankyou" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="ty-h" aria-describedby="ty-p" hidden>
+        <div class="modal" style="background:var(--surface-800);border:1px solid var(--border-700);border-radius:16px;padding:1rem 1.25rem;width:min(92vw,560px);box-shadow:0 20px 60px rgba(0,0,0,.45)">
+          <h3 id="ty-h" style="margin:.25rem 0 .25rem;color:var(--text-100)">Thank you — you’re on the waitlist!</h3>
+          <p id="ty-p" class="help" style="margin:0 0 .5rem;color:var(--text-300)">As a small thank-you, here’s a free Starter Pack with a one-page overview and sample activities.</p>
+          <div class="btn-row" style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-top:.5rem">
+            <a id="downloadBtn" class="btn btn-primary" href="starter-pack.pdf" download>Download starter pack</a>
+            <button id="closeTy" class="btn btn-outline" type="button">Close</button>
           </div>
         </div>
       </div>
-      <div class="cta-row" style="margin-top:1.25rem;display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center">
-        <a class="btn btn-primary" href="#waitlist" data-testid="cta-primary">Join the waitlist</a>
+
+      <section id="faq" class="section" aria-labelledby="faq-h">
+        <div class="container">
+          <h2 id="faq-h" style="margin:0 0 1rem;text-align:center">Frequently asked questions</h2>
+          <details>
+            <summary>What makes TaaPlay different?</summary>
+            <div class="help">Local-language, play-based content designed for South African families and ECD practitioners, with low-data delivery and CAPS-aware guidance—all in one place.</div>
+          </details>
+          <details>
+            <summary>Will TaaPlay be free?</summary>
+            <div class="help">Early access is free. A core free tier will remain after launch. Optional premium features for advanced content and tools may follow for those who need them.</div>
+          </details>
+          <details>
+            <summary>When does early access open and how will I get access?</summary>
+            <div class="help">We’re rolling out invites in small waves. We prioritise a mix of roles, provinces, and preferred languages from the waitlist. Invitations are sent by email (and, later, optional WhatsApp alerts). When selected, you’ll receive setup instructions and a starter pack.</div>
+          </details>
+          <details>
+            <summary>Which devices and connectivity are supported?</summary>
+            <div class="help">TaaPlay is mobile-first and works in modern browsers on Android and iOS, and on recent desktop browsers. It’s designed for low-data use; most experiences load quickly on 3G/4G. Limited offline reading for core activities is on the roadmap.</div>
+          </details>
+          <details>
+            <summary>How can ECD centres and NGOs participate?</summary>
+            <div class="help">Centres and programmes can join via the waitlist—select “Centre Owner/Principal” or “NGO/Programme Manager” as your role. We prioritise diverse provinces and languages. Early-access partners receive a starter pack and short onboarding tips; for pilots, we may share a simple MOU and feedback form.</div>
+          </details>
+          <details>
+            <summary>How does TaaPlay use AI?</summary>
+            <div class="help">AI helps surface age-appropriate activities, suggest language variants, and personalise recommendations. Human review guides all content. We do not require children’s personal data for the waitlist, and we follow POPIA. You can opt out of personalised suggestions at any time.</div>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container foot" style="justify-content:center;text-align:center">
+        <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:center">
+          <span>&copy; TaaPlay 2025</span>
+          <span aria-hidden="true">•</span>
+          <a href="privacy.html" rel="noopener">Privacy Notice</a>
+          <span aria-hidden="true">•</span>
+          <span>Contact: <a href="mailto:hello@taaplay.com">hello@taaplay.com</a></span>
+        </div>
       </div>
-      <p class="micro" style="margin-top:.5rem">Free to join. We’ll email you when early access opens.</p>
-      <div class="badges" aria-label="Highlights" style="justify-content:center">
-        <span class="badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7c0-2.21 4.03-4 9-4s9 1.79 9 4-4.03 4-9 4-9-1.79-9-4Z"/><path d="M3 12c0 2.21 4.03 4 9 4s9-1.79 9-4"/><path d="M3 17c0 2.21 4.03 4 9 4s9-1.79 9-4"/></svg>Low-data</span>
-        <span class="badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M20 22H6.5A2.5 2.5 0 0 1 4 19.5V5a2 2 0 0 1 2-2h14Z"/></svg>CAPS-aware</span>
-        <span class="badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h12"/><path d="M9 3v2"/><path d="m5 8 6 6"/><path d="m4 14 4-9 4 9"/><path d="M19 10v3"/><path d="M17 12h4"/></svg>English now; isiZulu & Sepedi next</span>
-      </div>
-    </div>
-  </section>
-  <div class="sticky-cta" role="region" aria-label="Sticky join bar"><span style="font-weight:700;color:var(--brand-primary)">Early access</span><a class="btn btn-primary" href="#waitlist" aria-label="Jump to waitlist form">Join the waitlist</a></div>
-  <section class="section" aria-labelledby="value-prop-h">
-    <div class="container">
-      <h2 id="value-prop-h" style="margin:0 0 1rem;text-align:center">What makes TaaPlay different</h2>
-      <div class="value-grid" role="list">
-        <article class="card" role="listitem"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H7l-4-4V5a2 2 0 0 1 2-2h7"/><path d="M19 2v4"/><path d="M17 4h4"/></svg><h3>Local languages first</h3><p>Stories, songs, and activities that reflect home languages and culture—English now; isiZulu and Sepedi next, with more to follow.</p></article>
-        <article class="card" role="listitem"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16"/><path d="M5 22V7h14v15"/><path d="M10 11h4"/></svg><h3>Play-based & CAPS-aware</h3><p>Age-appropriate activities aligned to early learning goals to support school readiness.</p></article>
-        <article class="card" role="listitem"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h4"/><path d="M18 12h4"/><path d="M7.5 7.5 4 4"/><path d="m20 20-3.5-3.5"/><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="3"/></svg><h3>Smart, simple, low-data</h3><p>Mobile-first, offline-friendly content so families and centres can learn anywhere.</p></article>
-        <article class="card" role="listitem"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20v-8"/><path d="M18 20v-5"/><path d="M6 20v-2"/><path d="M4 4h16v4H4z"/></svg><h3>For caregivers and practitioners</h3><p>Quick ideas for home; ready-to-use mini-lessons and tips for ECD classrooms.</p></article>
-      </div>
-    </div>
-  </section>
-  <section id="waitlist" class="section" aria-labelledby="waitlist-h">
-    <div class="container">
-      <h2 id="waitlist-h" style="margin:0 auto .5rem;text-align:center">Be first to play with TaaPlay</h2>
-      <p class="help" style="margin:0 auto;max-width:60ch;text-align:center">Tell us who you are and what you need most. We’ll tailor your early-access invite and starter pack.</p>
-      <div class="form-wrap">
-        <form id="early-access" action="#" method="post" autocomplete="on" novalidate>
-          <div class="form-row"><div><label for="email">Email address</label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="email-help" /><div id="email-help" class="help">We’ll only use this to contact you about early access.</div></div></div>
-          <div class="form-row grid-2">
-            <div><label for="role">Your role</label><select id="role" name="role" required><option value="" selected disabled>Please select…</option><option>ECD practitioner/Teacher</option><option>Parent/Caregiver</option><option>Centre Owner/Principal</option><option>NGO/Programme Manager</option><option>Other</option></select></div>
-            <div><label for="province">South African province</label><select id="province" name="province" required><option value="" selected disabled>Please select…</option><option>Eastern Cape</option><option>Free State</option><option>Gauteng</option><option>KwaZulu-Natal</option><option>Limpopo</option><option>Mpumalanga</option><option>Northern Cape</option><option>North West</option><option>Western Cape</option></select></div>
-          </div>
-          <div class="form-row grid-2">
-            <div><label for="language">Preferred language</label><select id="language" name="preferred_language" required><option value="" selected disabled>Please select…</option><option>isiZulu</option><option>isiXhosa</option><option>Afrikaans</option><option>English</option><option>Sepedi (Northern Sotho)</option><option>Setswana</option><option>Sesotho</option><option>Xitsonga</option><option>siSwati</option><option>Tshivenda</option><option>isiNdebele</option></select></div>
-            <div><label for="need">What’s the #1 thing you need help with? <span class="help" aria-hidden="true" style="font-weight:400">(optional)</span></label><textarea id="need" name="top_need" placeholder="e.g., age-4 activities in isiZulu; assessment checklists; offline stories"></textarea></div>
-          </div>
-          <div class="visually-hidden" aria-hidden="true"><label for="taaplay_hp">Leave this field empty</label><input id="taaplay_hp" name="taaplay_hp" type="text" tabindex="-1" autocomplete="off" /></div>
-          <div class="consent"><input id="consent" name="consent" type="checkbox" required aria-describedby="consent-help" /><label for="consent" style="font-weight:600">I consent to TaaPlay processing my information to contact me about early access and related ECD resources. We respect your privacy and comply with POPIA. You can unsubscribe at any time.</label></div>
-          <div id="consent-help" class="help">Read our <a href="privacy.html" rel="noopener">Privacy Notice</a>.</div>
-          <div class="actions"><button class="btn btn-primary btn-lg" type="submit" data-testid="submit">Join the waitlist</button><div id="form-response" class="help" role="status" aria-live="polite" style="min-height:1.25rem"></div><a href="#" class="help" aria-disabled="true" title="Coming soon">No email? Get a WhatsApp alert instead</a></div>
-        </form>
-      </div>
-    </div>
-  </section>
-  <div id="thankyou" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="ty-h" aria-describedby="ty-p" hidden>
-    <div class="modal" style="background:var(--surface-800);border:1px solid var(--border-700);border-radius:16px;padding:1rem 1.25rem;width:min(92vw,560px);box-shadow:0 20px 60px rgba(0,0,0,.45)">
-      <h3 id="ty-h" style="margin:.25rem 0 .25rem;color:var(--text-100)">Thank you — you’re on the waitlist!</h3>
-      <p id="ty-p" class="help" style="margin:0 0 .5rem;color:var(--text-300)">As a small thank‑you, here’s a free Starter Pack with a one‑page overview and sample activities.</p>
-      <div class="btn-row" style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-top:.5rem"><a id="downloadBtn" class="btn btn-primary" href="starter-pack.pdf" download>Download starter pack</a><button id="closeTy" class="btn btn-outline" type="button">Close</button></div>
-    </div>
+    </footer>
   </div>
-  <section id="faq" class="section" aria-labelledby="faq-h">
-    <div class="container">
-      <h2 id="faq-h" style="margin:0 0 1rem;text-align:center">Frequently asked questions</h2>
-      <details><summary>What makes TaaPlay different?</summary><div class="help">Local-language, play-based content designed for South African families and ECD practitioners, with low-data delivery and CAPS-aware guidance—all in one place.</div></details>
-      <details><summary>Will TaaPlay be free?</summary><div class="help">Early access is free. A core free tier will remain after launch. Optional premium features for advanced content and tools may follow for those who need them.</div></details>
-      <details><summary>When does early access open and how will I get access?</summary><div class="help">We’re rolling out invites in small waves. We prioritise a mix of roles, provinces, and preferred languages from the waitlist. Invitations are sent by email (and, later, optional WhatsApp alerts). When selected, you’ll receive setup instructions and a starter pack.</div></details>
-      <details><summary>Which devices and connectivity are supported?</summary><div class="help">TaaPlay is mobile‑first and works in modern browsers on Android and iOS, and on recent desktop browsers. It’s designed for low‑data use; most experiences load quickly on 3G/4G. Limited offline reading for core activities is on the roadmap.</div></details>
-      <details><summary>How can ECD centres and NGOs participate?</summary><div class="help">Centres and programmes can join via the waitlist—select “Centre Owner/Principal” or “NGO/Programme Manager” as your role. We prioritise diverse provinces and languages. Early‑access partners receive a starter pack and short onboarding tips; for pilots, we may share a simple MOU and feedback form.</div></details>
-      <details><summary>How does TaaPlay use AI?</summary><div class="help">AI helps surface age‑appropriate activities, suggest language variants, and personalise recommendations. Human review guides all content. We do not require children’s personal data for the waitlist, and we follow POPIA. You can opt out of personalised suggestions at any time.</div></details>
+
+  <noscript>
+    <div style="background:#fff7ed;border-top:1px solid #fed7aa;padding:1rem;text-align:center">
+      This site works best with JavaScript enabled for form validation.
+      You can still email us at <a href="mailto:hello@taaplay.com">hello@taaplay.com</a>.
     </div>
-  </section>
-</main>
-<footer>
-  <div class="container foot" style="justify-content:center;text-align:center">
-    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:center"><span>&copy; TaaPlay 2025</span><span aria-hidden="true">•</span><a href="privacy.html" rel="noopener">Privacy Notice</a><span aria-hidden="true">•</span><span>Contact: <a href="mailto:hello@taaplay.com">hello@taaplay.com</a></span></div>
-  </div>
-</footer>
-</div>
-<noscript><div style="background:#fff7ed;border-top:1px solid #fed7aa;padding:1rem;text-align:center">This site works best with JavaScript enabled for form validation. You can still email us at <a href="mailto:hello@taaplay.com">hello@taaplay.com</a>.</div></noscript>
-<script>(function(){var v=document.getElementById('ambient');if(!v)return;function gates(){try{if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return false;}catch(_){ }var c=navigator.connection||{};if(c&&(c.saveData||/2g/i.test(String(c.effectiveType||''))))return false;return window.innerWidth>=980}function addSources(){if(v.querySelector('source'))return;var s1=document.createElement('source');s1.src='assets/motion/hero-broll.webm?v=1';s1.type='video/webm';v.appendChild(s1);var s2=document.createElement('source');s2.src='assets/motion/hero-broll.mp4?v=1';s2.type='video/mp4';v.appendChild(s2)}function tryPlay(){if(!gates())return;addSources();v.style.display='block';v.preload='auto';v.muted=true;v.autoplay=true;v.play().catch(function(){})}tryPlay();window.addEventListener('resize',function(){tryPlay()});document.addEventListener('visibilitychange',function(){if(!document.hidden)tryPlay()})})();</script>
-<script>(function(){var form=document.getElementById('early-access'),resp=document.getElementById('form-response'),CK_FORM_ID='REPLACE_WITH_CONVERTKIT_FORM_ID',CK_PUBLIC_API_KEY='REPLACE_WITH_CONVERTKIT_PUBLIC_API_KEY',DOWNLOAD_URL='starter-pack.pdf';window.__ck={CK_FORM_ID:CK_FORM_ID,CK_PUBLIC_API_KEY:CK_PUBLIC_API_KEY};window.__track=function(e,p){if(window.plausible){window.plausible(e,{props:p})}if(location.hostname==='localhost'){try{console.log('[track]',e,p||{})}catch(_){}}};var pageLoadAt=Date.now();if(!form) return;var email=document.getElementById('email');if(email){email.addEventListener('focus',function(){window.__track('form_start')},{once:true})}form.addEventListener('submit',function(ev){(async function(){ev.preventDefault();resp.textContent='';var required=form.querySelectorAll('[required]'),firstInvalid=null;required.forEach(function(el){if(!el.checkValidity()&&!firstInvalid){firstInvalid=el}});if(firstInvalid){firstInvalid.focus();firstInvalid.scrollIntoView({behavior:'smooth',block:'center'});resp.textContent='Please complete the required fields.';window.__track('form_validation_error');return}var hp=document.getElementById('taaplay_hp'),tDelta=Date.now()-pageLoadAt;if(hp&&hp.value.trim()!==''){resp.textContent='Thanks!';window.__track('spam_honeypot_blocked');form.reset();return}if(tDelta<2000){resp.textContent='Please try again.';window.__track('spam_timeguard_blocked',{ttv_ms:tDelta});return}var payload={api_key:CK_PUBLIC_API_KEY,email:form.email.value.trim(),fields:{role:form.role.value,province:form.province.value,preferred_language:form.preferred_language.value,top_need:form.top_need.value||''}},configured=CK_FORM_ID&&!/REPLACE_WITH_/.test(CK_FORM_ID)&&CK_PUBLIC_API_KEY&&!/REPLACE_WITH_/.test(CK_PUBLIC_API_KEY);try{if(!configured){resp.textContent='Thank you! You are on the waitlist.';window.__track('form_submit_demo_success');form.reset();openThankYou();return}var endpoint='https://api.convertkit.com/v3/forms/'+encodeURIComponent(CK_FORM_ID)+'/subscribe';window.__track('form_submit_attempt');var res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json; charset=utf-8'},body:JSON.stringify(payload)});if(!res.ok){var errText=await res.text();throw new Error(errText||('Request failed: '+res.status))}await res.json().catch(function(){return {}});resp.textContent='Success! Please check your email to confirm.';window.__track('form_submit_success');form.reset();openThankYou()}catch(err){try{console.error('ConvertKit error',err)}catch(_){}resp.textContent='Sorry—something went wrong. Please try again later or email hello@taaplay.com.';window.__track('form_submit_error')}})()},{passive:false});var TY=document.getElementById('thankyou'),btnDownload=document.getElementById('downloadBtn'),btnCloseTy=document.getElementById('closeTy');function openThankYou(){if(!TY)return;if(btnDownload){btnDownload.href=DOWNLOAD_URL;btnDownload.addEventListener('click',function(){window.__track('download_click')})}if(btnCloseTy){btnCloseTy.addEventListener('click',closeThankYou)}TY.hidden=false;TY.classList.add('open');document.addEventListener('keydown',onTyKey);TY.addEventListener('click',onTyBackdrop);window.__track('thankyou_open');if(btnCloseTy)btnCloseTy.focus()}function closeThankYou(){if(!TY)return;TY.classList.remove('open');TY.hidden=true;document.removeEventListener('keydown',onTyKey);TY.removeEventListener('click',onTyBackdrop);window.__track('thankyou_close')}function onTyBackdrop(e){if(e.target===TY)closeThankYou()}function onTyKey(e){if(e.key==='Escape')closeThankYou()}window.__selfcheck=function(){var ok=true,msgs=[];function chk(c,desc){if(!c){ok=false;msgs.push('✖ '+desc)}else{msgs.push('✔ '+desc)}}chk(!!document.querySelector('#waitlist select#language'),'11-language dropdown present');chk(!!document.querySelector('#waitlist select#province'),'9-province dropdown present');chk(!('ethereum' in window),'No wallet object touched');chk(!!document.querySelector('.gradient-text'),'Gradient headline applied');var v=document.getElementById('ambient');chk(!!v,'Ambient <video> exists');if(console&&console.log){console.log('[selfcheck]',ok? 'PASS':'CHECK',msgs)}return ok};window.__selfcheck();})();</script>
+  </noscript>
+
+  <!-- Ambient video loader (desktop only; respects Save-Data and Reduced Motion) -->
+  <script>
+    (function(){
+      var v=document.getElementById('ambient'); if(!v) return;
+      try{ if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return; }catch(_){}
+      var c=navigator.connection||{}; if(c && (c.saveData || /2g/i.test(String(c.effectiveType||'')))) return;
+      if(window.innerWidth < 980) return; // desktop only
+      function addSources(){
+        if(v.querySelector('source')) return;
+        var s1=document.createElement('source'); s1.src='assets/motion/hero-broll.webm?v=1'; s1.type='video/webm'; v.appendChild(s1);
+        var s2=document.createElement('source'); s2.src='assets/motion/hero-broll.mp4?v=1';  s2.type='video/mp4';  v.appendChild(s2);
+      }
+      function tryPlay(){
+        addSources(); v.style.display='block'; v.preload='auto'; v.muted=true; v.autoplay=true;
+        v.play().catch(function(){});
+      }
+      tryPlay();
+      window.addEventListener('resize', function(){ if(window.innerWidth>=980) tryPlay(); });
+      document.addEventListener('visibilitychange', function(){ if(!document.hidden) tryPlay(); });
+    })();
+  </script>
+
+  <!-- Form handling + ConvertKit -->
+  <script>
+    (function(){
+      var form=document.getElementById('early-access'), resp=document.getElementById('form-response');
+      var CK_FORM_ID='REPLACE_WITH_CONVERTKIT_FORM_ID';
+      var CK_PUBLIC_API_KEY='REPLACE_WITH_CONVERTKIT_PUBLIC_API_KEY';
+      var DOWNLOAD_URL='starter-pack.pdf';
+      window.__ck={CK_FORM_ID:CK_FORM_ID, CK_PUBLIC_API_KEY:CK_PUBLIC_API_KEY};
+      window.__track=function(ev,props){ if(window.plausible){ window.plausible(ev,{props:props}); } };
+
+      var pageLoadAt=Date.now();
+      if(!form) return;
+
+      var email=document.getElementById('email');
+      if(email){ email.addEventListener('focus', function(){ window.__track('form_start'); }, {once:true}); }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault(); resp.textContent='';
+        var required=form.querySelectorAll('[required]'), firstInvalid=null;
+        required.forEach(function(el){ if(!el.checkValidity() && !firstInvalid){ firstInvalid=el; } });
+        if(firstInvalid){ firstInvalid.focus(); firstInvalid.scrollIntoView({behavior:'smooth',block:'center'});
+          resp.textContent='Please complete the required fields.'; window.__track('form_validation_error'); return; }
+
+        // spam guards
+        var hp=document.getElementById('taaplay_hp'); var tDelta=Date.now()-pageLoadAt;
+        if(hp && hp.value.trim()!==''){ resp.textContent='Thanks!'; window.__track('spam_honeypot_blocked'); form.reset(); return; }
+        if(tDelta<2000){ resp.textContent='Please try again.'; window.__track('spam_timeguard_blocked',{ttv_ms:tDelta}); return; }
+
+        var payload={ api_key:CK_PUBLIC_API_KEY, email:form.email.value.trim(),
+          fields:{ role:form.role.value, province:form.province.value, preferred_language:form.preferred_language.value, top_need:form.top_need.value||'' } };
+        var configured = CK_FORM_ID && !/REPLACE_WITH_/.test(CK_FORM_ID) && CK_PUBLIC_API_KEY && !/REPLACE_WITH_/.test(CK_PUBLIC_API_KEY);
+
+        function openThankYou(){
+          var TY=document.getElementById('thankyou'), btnDownload=document.getElementById('downloadBtn'), btnClose=document.getElementById('closeTy');
+          if(!TY) return; if(btnDownload){ btnDownload.href=DOWNLOAD_URL; btnDownload.addEventListener('click', function(){ window.__track('download_click'); }); }
+          if(btnClose){ btnClose.addEventListener('click', closeThankYou); }
+          TY.hidden=false; TY.classList.add('open');
+          function onKey(e){ if(e.key==='Escape') closeThankYou(); }
+          function onBackdrop(e){ if(e.target===TY) closeThankYou(); }
+          function closeThankYou(){ TY.classList.remove('open'); TY.hidden=true; document.removeEventListener('keydown', onKey); TY.removeEventListener('click', onBackdrop); }
+          document.addEventListener('keydown', onKey); TY.addEventListener('click', onBackdrop);
+        }
+
+        (async function submit(){
+          try{
+            if(!configured){
+              resp.textContent='Thank you! You are on the waitlist.'; window.__track('form_submit_demo_success');
+              form.reset(); openThankYou(); return;
+            }
+            var endpoint='https://api.convertkit.com/v3/forms/'+encodeURIComponent(CK_FORM_ID)+'/subscribe';
+            window.__track('form_submit_attempt');
+            var res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json; charset=utf-8'},body:JSON.stringify(payload)});
+            if(!res.ok){ var errText=await res.text(); throw new Error(errText || ('Request failed: '+res.status)); }
+            await res.json().catch(function(){ return {}; });
+            resp.textContent='Success! Please check your email to confirm.'; window.__track('form_submit_success');
+            form.reset(); openThankYou();
+          }catch(err){
+            try{ console.error('ConvertKit error', err); }catch(_){}
+            resp.textContent='Sorry—something went wrong. Please try again later or email hello@taaplay.com.';
+            window.__track('form_submit_error');
+          }
+        })();
+      });
+    })();
+  </script>
 </body>
 </html>
