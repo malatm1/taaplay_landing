@@ -54,6 +54,7 @@ section h2::after{content:"";display:block;height:2px;width:84px;margin:.5rem au
 .art-overlay{position:absolute;inset:12% 8%;border-radius:22px;background:conic-gradient(from 140deg at 50% 50%,rgba(14,116,144,.16),rgba(167,139,250,.12),rgba(163,230,53,.10),rgba(255,107,53,.10),rgba(14,116,144,.16));display:grid;place-items:center}
 .art-overlay .stamp{background:linear-gradient(180deg,rgba(14,116,144,.14),rgba(14,116,144,.06)) padding-box,conic-gradient(from 30deg,rgba(163,230,53,.55),rgba(255,107,53,.55),rgba(167,139,250,.55),rgba(163,230,53,.55)) border-box;border:2px solid transparent;border-radius:9999px;padding:1rem 1.25rem;text-align:center;color:var(--text-100);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(14,116,144,.18)}
 .stamp-title{display:block;color:var(--text-100);font-weight:800;font-size:1.15rem;letter-spacing:.01em}.micro{font-size:.85rem;color:var(--text-500)}
+/* Sticky mobile CTA hidden on desktop */
 .sticky-cta{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:60;background:var(--surface-900);color:var(--text-100);border:1px solid var(--border-700);border-bottom:0;border-radius:14px 14px 0 0;padding:.5rem .75rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;width:min(1200px,96vw)}
 .sticky-cta .btn{width:100%}@media(min-width:720px){.sticky-cta{display:none}}
 .value-grid{display:grid;gap:1rem}@media(min-width:720px){.value-grid{grid-template-columns:repeat(2,1fr)}}@media(min-width:980px){.value-grid{grid-template-columns:repeat(4,1fr)}}
@@ -79,20 +80,12 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
 .brand-logo{display:flex;align-items:center;background:none}
 .brand-logo img{height:40px;width:auto;border-radius:0}
 .brand-text-fallback{display:none;font-weight:800;letter-spacing:.2px;color:var(--text-100);font-size:1.15rem}
-
-/* --- ConvertKit inline tweaks (optional; inherits your base styles) --- */
-.ck-inline { display:grid; gap:1rem }
-.ck-row { display:grid; gap:0.5rem }
-.ck-grid-2 { grid-template-columns: 1fr; gap:1rem }
-@media (min-width:720px){ .ck-grid-2{ grid-template-columns: repeat(2,1fr) } }
-.ck-help { color: var(--text-300); font-size: .9rem }
-.ck-consent { display:flex; align-items:flex-start; gap:.75rem; background:transparent; border:none; border-radius:12px; padding:.75rem }
 </style>
 
-<!-- Suppress wallet / MetaMask noise (non-blocking) -->
+<!-- Ignore any wallet/MetaMask noise -->
 <script>(function(){function isNoise(t){if(!t)return false;var s=(''+t).toLowerCase();return s.indexOf('metamask')>-1||s.indexOf('wallet')>-1}window.addEventListener('error',function(e){if(isNoise(e&&e.message)){try{e.preventDefault()}catch(_){} }},true);window.addEventListener('unhandledrejection',function(e){var r=e&&e.reason?(e.reason.message||''+e.reason):'';if(isNoise(r)){try{e.preventDefault()}catch(_){} }},true)})();</script>
 
-<!-- Wordmark fallback -->
+<!-- Wordmark fallback if image fails -->
 <script>(function(){window.__logoFallback=function(img){if(!img)return;var tried=img.getAttribute('data-tried-mark')==='1';if(!tried){img.setAttribute('data-tried-mark','1');img.onerror=function(){window.__logoFallback&&__logoFallback(img)};img.removeAttribute('srcset');img.src='assets/brand/taaplay-mark.png';img.style.height='36px';img.style.width='36px';img.style.borderRadius='10px'}else{img.style.display='none';try{var t=img.parentElement&&img.parentElement.querySelector('.brand-text-fallback');if(t){t.style.display='inline-block'}}catch(_){}}};})();</script>
 </head>
 <body>
@@ -101,20 +94,12 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
 <header>
   <div class="container nav">
     <a class="brand" href="#top" aria-label="TaaPlay home">
-      <div class="brand-logo">
-        <img id="brandWordmark"
-             src="assets/brand/taaplay-logo-horiz.png"
-             srcset="assets/brand/taaplay-logo-horiz@2x.png 2x"
-             alt="TaaPlay" loading="eager" decoding="async"
-             onerror="window.__logoFallback&&__logoFallback(this)" />
-        <span class="brand-text-fallback" aria-hidden="true">TaaPlay</span>
-      </div>
+      <div class="brand-logo"><img id="brandWordmark" src="assets/brand/taaplay-logo-horiz.png" srcset="assets/brand/taaplay-logo-horiz@2x.png 2x" alt="TaaPlay" loading="eager" decoding="async" onerror="window.__logoFallback&&__logoFallback(this)" /><span class="brand-text-fallback" aria-hidden="true">TaaPlay</span></div>
       <span class="brand-name visually-hidden">TaaPlay</span>
     </a>
     <div class="nav-cta"><a class="btn btn-outline" href="#faq">Learn more</a></div>
   </div>
 </header>
-
 <main id="top">
   <!-- ============== HERO ============== -->
   <section class="section">
@@ -145,7 +130,7 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
     </div>
   </section>
 
-  <!-- Sticky mobile CTA -->
+  <!-- Sticky mobile CTA (hidden on desktop) -->
   <div class="sticky-cta" role="region" aria-label="Sticky join bar">
     <span style="font-weight:700;color:var(--brand-primary)">Early access</span>
     <a class="btn btn-primary" href="#waitlist" aria-label="Jump to waitlist form">Join the waitlist</a>
@@ -164,13 +149,14 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
     </div>
   </section>
 
-  <!-- ============== WAITLIST (ConvertKit inline) ============== -->
+  <!-- ============== WAITLIST (Kit Inline, Double Opt-in) ============== -->
   <section id="waitlist" class="section" aria-labelledby="waitlist-h">
     <div class="container">
       <h2 id="waitlist-h" style="margin:0 auto .5rem;text-align:center">Be first to play with TaaPlay</h2>
       <p class="help" style="margin:0 auto;max-width:60ch;text-align:center">Tell us who you are and what you need most. We’ll tailor your early-access invite and starter pack.</p>
 
       <div class="form-wrap">
+        <!-- Kit inline form: shows onsite success message; post-confirm redirect is set in Kit Incentive settings -->
         <form
           id="early-access"
           class="ck-inline"
@@ -180,22 +166,28 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
           data-uid="dfa0cefee5"
           data-format="inline"
           data-version="5"
+          data-options='{
+            "settings": {
+              "after_subscribe": {
+                "action": "message",
+                "success_message": "Success! Please check your email to confirm your subscription. Once you confirm, we’ll take you to your starter pack."
+              }
+            }
+          }'
           novalidate
         >
-          <!-- Email -->
           <div class="form-row">
             <div>
-              <label for="ck_email">Email address</label>
-              <input id="ck_email" name="email_address" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="email-help" />
+              <label for="email">Email address</label>
+              <input id="email" name="email_address" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="email-help" />
               <div id="email-help" class="help">We’ll only use this to contact you about early access.</div>
             </div>
           </div>
 
-          <!-- Role + Province -->
           <div class="form-row grid-2">
             <div>
-              <label for="ck_role">Your role</label>
-              <select id="ck_role" name="fields[role]" required>
+              <label for="role">Your role</label>
+              <select id="role" name="fields[role]" required>
                 <option value="" selected disabled>Please select…</option>
                 <option>ECD practitioner/Teacher</option>
                 <option>Parent/Caregiver</option>
@@ -205,8 +197,8 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
               </select>
             </div>
             <div>
-              <label for="ck_province">South African province</label>
-              <select id="ck_province" name="fields[province]" required>
+              <label for="province">South African province</label>
+              <select id="province" name="fields[province]" required>
                 <option value="" selected disabled>Please select…</option>
                 <option>Eastern Cape</option>
                 <option>Free State</option>
@@ -221,11 +213,10 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
             </div>
           </div>
 
-          <!-- Language + Need -->
           <div class="form-row grid-2">
             <div>
-              <label for="ck_lang">Preferred language</label>
-              <select id="ck_lang" name="fields[preferred_language]" required>
+              <label for="language">Preferred language</label>
+              <select id="language" name="fields[preferred_language]" required>
                 <option value="" selected disabled>Please select…</option>
                 <option>isiZulu</option>
                 <option>isiXhosa</option>
@@ -241,36 +232,28 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
               </select>
             </div>
             <div>
-              <label for="ck_need">What’s the #1 thing you need help with? <span class="help" aria-hidden="true" style="font-weight:400">(optional)</span></label>
-              <textarea id="ck_need" name="fields[top_need]" placeholder="e.g., age-4 activities in isiZulu; assessment checklists; offline stories"></textarea>
+              <label for="need">What’s the #1 thing you need help with? <span class="help" aria-hidden="true" style="font-weight:400">(optional)</span></label>
+              <textarea id="need" name="fields[top_need]" placeholder="e.g., age-4 activities in isiZulu; assessment checklists; offline stories"></textarea>
             </div>
           </div>
 
-          <!-- Honeypot (bots fill it; humans don't) -->
+          <!-- Honeypot for spam bots -->
           <div class="visually-hidden" aria-hidden="true">
             <label for="taaplay_hp">Leave this field empty</label>
-            <input id="taaplay_hp" name="fields[website]" type="text" tabindex="-1" autocomplete="off" />
+            <input id="taaplay_hp" name="taaplay_hp" type="text" tabindex="-1" autocomplete="off" />
           </div>
 
-          <!-- Consent -->
           <div class="consent">
-            <input id="ck_consent" name="fields[consent]" type="checkbox" value="yes" required aria-describedby="consent-help" />
-            <label for="ck_consent" style="font-weight:600">I consent to TaaPlay processing my information to contact me about early access and related ECD resources. We respect your privacy and comply with POPIA. You can unsubscribe at any time.</label>
+            <input id="consent" name="fields[consent]" type="checkbox" required aria-describedby="consent-help" />
+            <label for="consent" style="font-weight:600">I consent to TaaPlay processing my information to contact me about early access and related ECD resources. We respect your privacy and comply with POPIA. You can unsubscribe at any time.</label>
           </div>
           <div id="consent-help" class="help">Read our <a href="privacy.html" rel="noopener">Privacy Notice</a>.</div>
 
-          <!-- Submit -->
           <div class="actions">
-            <button class="btn btn-primary btn-lg" type="submit" data-element="submit">Join the waitlist</button>
-            <div id="form-response" class="help" role="status" aria-live="polite" style="min-height:1.25rem"></div>
+            <button class="btn btn-primary btn-lg" type="submit" data-testid="submit">Join the waitlist</button>
+            <!-- Kit injects the inline success message right here after submit -->
             <a href="#" class="help" aria-disabled="true" title="Coming soon">No email? Get a WhatsApp alert instead</a>
           </div>
-
-          <!-- Optional: success message or redirect -->
-          <input type="hidden" name="options[success_message]" value="Success! Please check your email to confirm." />
-          <!-- Or redirect:
-          <input type="hidden" name="options[redirect_url]" value="https://malatm1.github.io/taaplay_landing/thanks.html" />
-          -->
         </form>
       </div>
     </div>
@@ -305,23 +288,23 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
 
 <noscript>
   <div style="background:#fff7ed;border-top:1px solid #fed7aa;padding:1rem;text-align:center">
-    This site works best with JavaScript enabled for smooth scrolling. You can still email us at
+    This site works best with JavaScript enabled for form enhancements. You can still email us at
     <a href="mailto:hello@taaplay.com">hello@taaplay.com</a>.
   </div>
 </noscript>
 
-<!-- Lightweight self-check (no network) -->
+<!-- (No custom submit JS to avoid conflicts with Kit inline form) -->
 <script>
-(function(){
-  var ok=true, msgs=[];
-  function chk(c,desc){ if(!c){ ok=false; msgs.push('✖ '+desc); } else { msgs.push('✔ '+desc); } }
-  chk(!!document.querySelector('#waitlist select#ck_lang'), '11-language dropdown present');
-  chk(!!document.querySelector('#waitlist select#ck_province'), '9-province dropdown present');
-  chk(!('ethereum' in window), 'No wallet object touched');
-  chk(!!document.querySelector('.gradient-text'), 'Gradient headline applied');
-  if(console && console.log){ console.log('[selfcheck]', ok?'PASS':'CHECK', msgs); }
-  return ok;
-})();
+  // Self-check (kept minimal)
+  (function(){
+    var ok=true,msg=[];
+    function t(c,d){(c?msg.push('✔'):msg.push('✖')) && msg.push(' '+d)}
+    t(!!document.querySelector('#waitlist select#language'), '11-language dropdown present');
+    t(!!document.querySelector('#waitlist select#province'), '9-province dropdown present');
+    t(!('ethereum' in window), 'No wallet object touched');
+    t(!!document.querySelector('.gradient-text'), 'Gradient headline applied');
+    try{console.log('[selfcheck]', ok?'CHECK':'CHECK', msg.join(''))}catch(_){}
+  })();
 </script>
 </body>
 </html>
