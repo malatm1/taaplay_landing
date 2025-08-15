@@ -309,8 +309,98 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
 
 <!-- The only ConvertKit embed you need -->
 <script async data-uid="dfa0cefee5" src="https://f.convertkit.com/dfa0cefee5.js"></script>
+  <script>
+/* Inline submit (AJAX) → onsite success message; keeps double opt-in flow */
+(function () {
+  var form = document.getElementById('early-access');
+  if (!form) return;
+
+  // Place to show messages (we'll render right under the actions area)
+  var actions = form.querySelector('.actions');
+
+  function setBusy(state) {
+    var btn = form.querySelector('[type="submit"]');
+    if (!btn) return;
+    btn.disabled = !!state;
+    btn.setAttribute('aria-busy', state ? 'true' : 'false');
+    if (state) { btn.dataset._label = btn.textContent; btn.textContent = 'Submitting…'; }
+    else if (btn.dataset._label) { btn.textContent = btn.dataset._label; delete btn.dataset._label; }
+  }
+
+  function renderMessage(html, ok) {
+    var box = form.querySelector('.ck-inline-msg');
+    if (!box) {
+      box = document.createElement('div');
+      box.className = 'ck-inline-msg';
+      box.setAttribute('role', 'status');
+      box.setAttribute('aria-live', 'polite');
+      actions && actions.appendChild(box);
+    }
+    box.style.marginTop = '0.5rem';
+    box.style.padding = '.75rem 1rem';
+    box.style.borderRadius = '12px';
+    box.style.border = '1px solid ' + (ok ? '#22c55e' : '#ef4444');
+    box.style.background = ok ? 'rgba(34,197,94,.08)' : 'rgba(239,68,68,.08)';
+    box.style.color = '#E6EDF3';
+    box.innerHTML = html;
+    // Scroll into view for mobile
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Basic front-end validity check
+    if (!form.checkValidity && false) { /* older browsers */ }
+    if (!form.reportValidity || form.reportValidity()) {
+      setBusy(true);
+      var fd = new FormData(form);
+
+      // Submit directly to CK subscriptions endpoint (your action URL)
+      fetch(form.action, {
+        method: 'POST',
+        body: fd,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(async function (res) {
+        setBusy(false);
+        if (res.ok) {
+          // Show onsite success for DOUBLE OPT-IN:
+          // CK sends the confirmation email; after user clicks it,
+          // your Incentive "After confirming" redirect will send them to thanks.html
+          var email = form.querySelector('input[name="email_address"]');
+          var emailText = email && email.value ? email.value : 'your email';
+          renderMessage(
+            "<strong>Success!</strong> Please check " + emailText +
+            " to <em>confirm</em> your subscription. After you confirm, we’ll take you to your starter pack.",
+            true
+          );
+          // Optionally clear the form
+          form.reset();
+        } else {
+          // Try to surface CK error JSON if available
+          var txt = await res.text().catch(function(){ return ''; });
+          var msg = 'Something went wrong. Please try again in a moment.';
+          try {
+            var j = JSON.parse(txt);
+            if (j && j.message) msg = j.message;
+          } catch (_) {}
+          renderMessage("<strong>Oops.</strong> " + msg, false);
+        }
+      })
+      .catch(function (err) {
+        setBusy(false);
+        renderMessage("<strong>Network error.</strong> Please check your connection and try again.", false);
+        try { console.warn('[CK submit]', err); } catch(_) {}
+      });
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
+
 
 
 
