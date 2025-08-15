@@ -294,73 +294,25 @@ footer{border-top:1px solid var(--border-700);background:var(--surface-900);colo
 </noscript>
 
 <!-- (No custom submit JS to avoid conflicts with Kit inline form) -->
+<!-- (Optional) self-check stays -->
 <script>
-  // Self-check (kept minimal)
   (function(){
     var ok=true,msg=[];
-    function t(c,d){(c?msg.push('✔'):msg.push('✖')) && msg.push(' '+d)}
-    t(!!document.querySelector('#waitlist select#language'), '11-language dropdown present');
-    t(!!document.querySelector('#waitlist select#province'), '9-province dropdown present');
-    t(!('ethereum' in window), 'No wallet object touched');
-    t(!!document.querySelector('.gradient-text'), 'Gradient headline applied');
-    try{console.log('[selfcheck]', ok?'CHECK':'CHECK', msg.join(''))}catch(_){}
+    function t(c,d){(c?msg.push('✔'):msg.push('✖'))&&msg.push(' '+d)}
+    t(!!document.querySelector('#waitlist select#language'),'11-language dropdown present');
+    t(!!document.querySelector('#waitlist select#province'),'9-province dropdown present');
+    t(!('ethereum' in window),'No wallet object touched');
+    t(!!document.querySelector('.gradient-text'),'Gradient headline applied');
+    try{console.log('[selfcheck]',msg.join(''))}catch(_){}
   })();
 </script>
-<script>
-/* Kit inline success → local redirect (non-destructive patch) */
-(function(){
-  var form = document.querySelector('#early-access');
-  if (!form) return;
 
-  var emailInput =
-    form.querySelector('input[name="email_address"]') ||
-    form.querySelector('input[type="email"]');
-
-  function redirectToThanks(email) {
-    // Use your absolute GitHub Pages URL to avoid base-path surprises
-    var base = 'https://malatm1.github.io/taaplay_landing/thanks.html?download=1';
-    try {
-      var u = new URL(base);
-      if (email) u.searchParams.set('email', email);
-      window.location.assign(u.toString());
-    } catch (_) {
-      // Fallback if URL() not supported for some reason
-      var url = base + (base.indexOf('?')>-1 ? '&' : '?') +
-        (email ? 'email=' + encodeURIComponent(email) : '');
-      window.location.assign(url);
-    }
-  }
-
-  // 1) Redirect when Kit injects its success message into the inline form
-  var observer = new MutationObserver(function(){
-    // Match common Kit success markers (covers form versions/skins)
-    var successEl = form.querySelector(
-      '.formkit-alert.formkit-alert-success,' + // new skins
-      '.ck_subscribe_success,' +                // legacy
-      '[data-success],' +
-      '.ck-message-success'
-    );
-    if (successEl) {
-      observer.disconnect();
-      var email = emailInput && emailInput.value;
-      setTimeout(function(){ redirectToThanks(email); }, 600); // brief UX pause
-    }
-  });
-  observer.observe(form, { childList: true, subtree: true });
-
-  // 2) Also support the double-opt-in confirmation path via a synthetic event
-  //    Dispatch this from your embed callback or confirmation landing:
-  //    document.dispatchEvent(new CustomEvent('subscriber_confirmed',{detail:{email:'user@example.com'}}));
-  document.addEventListener('subscriber_confirmed', function(e){
-    var email = (e && e.detail && e.detail.email) || (emailInput && emailInput.value) || '';
-    redirectToThanks(email);
-  });
-})();
-</script>
+<!-- The only ConvertKit embed you need -->
 <script async data-uid="dfa0cefee5" src="https://f.convertkit.com/dfa0cefee5.js"></script>
-
 </body>
 </html>
+
+
 
 
 
