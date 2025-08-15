@@ -3,27 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thank you — TaaPlay</title>
-  <meta name="description" content="Thanks for joining the TaaPlay early-access waitlist. Grab your free starter pack and watch your inbox for next steps." />
-  <meta property="og:title" content="Thank you — TaaPlay" />
-  <meta property="og:description" content="You’re on the list! Download the starter pack and get ready to play." />
+  <title>TaaPlay — Thanks for confirming</title>
+  <meta name="description" content="Thanks for confirming your email. Download your TaaPlay Starter Pack and get early-access updates." />
+
+  <!-- Brand & social -->
+  <meta property="og:title" content="TaaPlay — Thanks for confirming" />
+  <meta property="og:description" content="Download your TaaPlay Starter Pack and get early-access updates." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/brand/taaplay-og.png" />
+  <meta property="og:image:alt" content="TaaPlay brand preview in deep teal, lime, orange and soft purple" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#0E7490" />
   <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0E7490" />
 
   <style>
-    /* === Palette (from your brand) === */
     :root{
+      /* Dark UI */
       --surface-900:#0B0F19;
       --surface-800:#111827;
       --border-700:#1F2937;
       --text-100:#E5E7EB;
       --text-300:#CBD5E1;
       --text-500:#94A3B8;
-      --brand-primary:#0E7490;
+      /* Brand */
+      --brand-primary:#0E7490;             /* deep teal */
       --brand-primary-strong:#0A5E72;
       --brand-lime:#A3E635;
       --brand-orange:#FF6B35;
@@ -31,139 +35,157 @@
     }
 
     /* Base */
-    html,body{
-      height:100%;
-      background:#000;
-      color:var(--text-100);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,"Noto Sans","Liberation Sans",sans-serif;
-      line-height:1.6;
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color: var(--text-100);
+      background: #000; /* dark surround */
+      line-height: 1.6;
     }
+    a { color: var(--brand-primary); }
+    a:hover { color: var(--brand-lime); text-decoration: underline; text-underline-offset: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px dotted var(--brand-primary-strong); outline-offset: 2px; }
 
     /* Framed shell to match landing page */
     .frame{
-      background:var(--surface-900);
-      border:1.5px solid var(--border-700);
-      border-radius:24px;
-      width:min(1100px,96vw);
-      margin:clamp(10px,2.5vw,28px) auto;
-      box-shadow:0 10px 40px rgba(0,0,0,.45);
-      overflow:hidden;
+      background: var(--surface-900);
+      border: 1.5px solid var(--border-700);
+      border-radius: 24px;
+      width: min(1200px, 96vw);
+      margin: clamp(8px, 2.5vw, 28px) auto;
+      box-shadow: 0 10px 40px rgba(0,0,0,.45);
+      overflow: hidden;
     }
-
+    .container { width: min(1000px, 92vw); margin-inline: auto; }
     header{
-      background:var(--surface-900);
-      border-bottom:1px solid var(--border-700);
-      padding:.875rem 0;
+      background: var(--surface-900);
+      border-bottom: 1px solid var(--border-700);
+      padding: .875rem 0;
     }
-    .container{width:min(960px,92vw); margin-inline:auto}
-    .nav{display:flex; align-items:center; justify-content:space-between; gap:1rem}
-    .brand{display:flex; align-items:center; gap:.625rem; text-decoration:none}
-    .brand-logo img{height:40px; width:auto}
-    .brand-name{font-weight:800; letter-spacing:.2px; color:var(--text-100)}
+    .brand{
+      display: flex; align-items: center; gap: .625rem; text-decoration: none;
+    }
+    .brand img{ height: 40px; width: auto; }
+    .brand .fallback{ font-weight: 800; color: var(--text-100); display:none; }
 
-    /* Main */
-    main{padding: clamp(2rem, 3vw + 1rem, 4rem) 0}
-    .hero{display:grid; gap:1.25rem; text-align:center; justify-items:center}
-    .eyebrow{
-      color:var(--brand-lime);
-      font-weight:800; font-size:.95rem; text-transform:uppercase; letter-spacing:.18em;
+    main{ padding: clamp(2rem, 2.5vw + 1rem, 3rem) 0; }
+    .hero{
+      display: grid; gap: 1.25rem; justify-items: center; text-align: center;
     }
     .h1{
-      font-size:clamp(1.85rem, 2.5vw + 1rem, 3rem);
-      line-height:1.15; margin:.25rem 0 .5rem;
-      /* Gradient text like the landing page */
-      background:linear-gradient(90deg,var(--brand-lime) 0%,var(--brand-orange) 35%,var(--brand-purple) 70%,var(--brand-lime) 100%);
-      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
+      font-size: clamp(1.8rem, 2.6vw + 1rem, 2.8rem);
+      margin: .25rem 0 .25rem;
+      line-height: 1.15;
+      background: linear-gradient(90deg,var(--brand-lime) 0%, var(--brand-orange) 40%, var(--brand-purple) 75%, var(--brand-lime) 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
     }
-    .lead{color:var(--text-300); max-width:65ch}
+    .lede{ color: var(--text-300); max-width: 72ch; margin: 0 auto .5rem; }
 
-    /* Card */
+    /* Card zone */
     .card{
-      margin-top:1rem;
-      background:var(--surface-800);
-      border:1px solid var(--border-700);
-      border-radius:18px;
-      padding:clamp(1rem,1.5vw + 1rem,1.5rem);
-      display:grid; gap:.5rem; justify-items:center; text-align:center;
+      margin-top: 1rem;
+      background: var(--surface-800);
+      border: 1px solid var(--border-700);
+      border-radius: 18px;
+      padding: 1rem;
+      display: grid;
+      gap: .75rem;
     }
+    .check{
+      display: inline-grid; place-items: center; width: 44px; height: 44px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(14,116,144,.18), rgba(14,116,144,.06)) padding-box,
+                  conic-gradient(from 30deg, rgba(163,230,53,.55), rgba(255,107,53,.55), rgba(167,139,250,.55), rgba(163,230,53,.55)) border-box;
+      border: 2px solid transparent;
+    }
+    .muted { color: var(--text-500); }
 
     /* Buttons */
+    .btn-row{ display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; margin-top: .25rem; }
     .btn{
-      appearance:none; border:none; cursor:pointer;
-      border-radius:999px; padding:1rem 1.5rem; font-weight:800; letter-spacing:.2px;
+      appearance: none; border: none; cursor: pointer;
+      border-radius: 999px; font-weight: 700; letter-spacing: .2px;
+      padding: .9rem 1.25rem;
     }
     .btn-primary{
-      border:2px solid transparent;
-      background:linear-gradient(180deg,var(--brand-orange),#e65f2f) padding-box,
-                 linear-gradient(135deg,var(--brand-lime),var(--brand-purple)) border-box;
-      color:#fff;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 18px rgba(0,0,0,.25);
-      transition:filter .2s ease, box-shadow .2s ease, transform .05s ease;
+      border: 2px solid transparent;
+      background: linear-gradient(180deg,var(--brand-orange),#e65f2f) padding-box,
+                  linear-gradient(135deg,var(--brand-lime),var(--brand-purple)) border-box;
+      color: #fff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 8px 18px rgba(0,0,0,.25);
+      transition: filter .2s ease, box-shadow .2s ease, transform .05s ease;
     }
-    .btn-primary:hover{ filter:brightness(.95); box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 22px rgba(0,0,0,.3) }
-    .btn-primary:active{ transform:translateY(1px) }
+    .btn-primary:hover{ filter: brightness(.95); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 10px 22px rgba(0,0,0,.28); }
+    .btn-primary:active{ transform: translateY(1px); }
     .btn-outline{
-      background:transparent; color:var(--text-100); border:2px solid var(--text-100);
-      transition:box-shadow .2s ease, transform .05s ease, border-color .2s ease, background .2s ease;
+      background: transparent; color: var(--text-100); border: 2px solid var(--text-100);
+      transition: box-shadow .2s ease, transform .05s ease, border-color .2s ease, background .2s ease;
     }
     .btn-outline:hover{
-      border-color:transparent;
-      background:linear-gradient(var(--surface-900),var(--surface-900)) padding-box,
-                 linear-gradient(135deg,var(--brand-primary),var(--brand-purple)) border-box;
+      border-color: transparent;
+      background: linear-gradient(var(--surface-900), var(--surface-900)) padding-box,
+                  linear-gradient(135deg, var(--brand-primary), var(--brand-purple)) border-box;
     }
-
-    /* Links */
-    a{ color:var(--brand-primary-strong); text-decoration:none }
-    a:hover{ color:var(--brand-lime); text-decoration:underline; text-underline-offset:2px }
-    a:visited{ color:var(--brand-purple) }
-    a:focus, .btn:focus{ outline:3px dotted var(--brand-primary-strong); outline-offset:2px }
+    .btn-outline:active{ transform: translateY(1px); }
 
     /* Footer */
-    footer{ border-top:1px solid var(--border-700); background:var(--surface-900); color:var(--text-300); }
-    .foot{ display:flex; align-items:center; justify-content:center; gap:.75rem; padding:1rem 0; flex-wrap:wrap }
-    .foot [aria-hidden="true"]{ opacity:.55; color:var(--text-500) }
+    footer{
+      border-top: 1px solid var(--border-700);
+      background: var(--surface-900);
+      color: var(--text-300);
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .foot { display: inline-flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+    .foot [aria-hidden="true"]{ opacity: .55; color: var(--text-500); }
 
-    @media (prefers-reduced-motion: reduce){ *{ scroll-behavior:auto !important } }
+    /* Helper */
+    .visually-hidden{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
   </style>
 </head>
 <body>
+  <a href="#main" class="visually-hidden">Skip to content</a>
+
   <div class="frame">
-    <header>
-      <div class="container nav">
-        <a class="brand" href="index.html" aria-label="Back to TaaPlay home">
-          <span class="brand-logo">
-            <img src="assets/brand/taaplay-logo-horiz.png"
-                 srcset="assets/brand/taaplay-logo-horiz@2x.png 2x"
-                 alt="TaaPlay" loading="eager" decoding="async">
-          </span>
-          <span class="brand-name">TaaPlay</span>
-        </a>
-        <nav aria-label="Return"><a class="btn btn-outline" href="index.html">Back to home</a></nav>
-      </div>
+    <header class="container">
+      <a class="brand" href="index.html" aria-label="TaaPlay home">
+        <img src="assets/brand/taaplay-logo-horiz.png"
+             srcset="assets/brand/taaplay-logo-horiz@2x.png 2x"
+             alt="TaaPlay" loading="eager" decoding="async"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+        <span class="fallback" aria-hidden="true">TaaPlay</span>
+      </a>
     </header>
 
-    <main>
-      <div class="container hero">
-        <p class="eyebrow">Early Access — Thank you</p>
-        <h1 class="h1">You’re on the waitlist 🎉</h1>
-        <p id="greeting" class="lead">Thanks for joining TaaPlay. We’ll email you when early access opens.</p>
+    <main id="main" class="container">
+      <section class="hero" aria-labelledby="t-h1">
+        <div class="check" aria-hidden="true">
+          <!-- Simple check icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               style="color:var(--brand-lime)">
+            <path d="M20 6L9 17l-5-5"></path>
+          </svg>
+        </div>
+        <h1 id="t-h1" class="h1">Thanks for confirming!</h1>
+        <p id="t-msg" class="lede">Your email is confirmed. You’re on the early‑access list. Grab your Starter Pack below, and we’ll be in touch soon.</p>
 
-        <div class="card" role="region" aria-labelledby="dl-h">
-          <h2 id="dl-h" style="margin:0;">Your starter pack</h2>
-          <p class="lead" style="margin:0 0 .25rem;">A quick overview plus sample activities.</p>
-          <div style="display:flex; gap:.75rem; flex-wrap:wrap; justify-content:center; margin-top:.5rem">
-            <a id="downloadBtn" class="btn btn-primary" href="assets/starters/starter-pack.pdf" download>Download starter pack</a>
-            <a class="btn btn-outline" href="index.html#faq">Browse FAQs</a>
+        <div class="card" role="region" aria-label="Your starter pack">
+          <p class="muted" id="emailEcho" style="margin:0;"></p>
+          <div class="btn-row">
+            <a id="downloadBtn" class="btn btn-primary" href="assets/motion/hero-broll.jpg" download>Download Starter Pack</a>
+            <a class="btn btn-outline" href="index.html">Back to TaaPlay</a>
           </div>
-          <p class="lead" style="font-size:.95rem; color:var(--text-500); margin-top:.75rem">
-            If your download doesn’t start, click the button above. Keep this page for your records.
+          <p class="muted" style="margin: .25rem 0 0;">
+            Having trouble? <a href="mailto:hello@taaplay.com">Email us</a>.
           </p>
         </div>
-      </div>
+      </section>
     </main>
 
     <footer>
-      <div class="container foot">
+      <div class="foot">
         <span>&copy; TaaPlay 2025</span>
         <span aria-hidden="true">•</span>
         <a href="privacy.html">Privacy Notice</a>
@@ -173,28 +195,65 @@
     </footer>
   </div>
 
-  <script>
-    // Personalize greeting if ?email= is present.
-    (function(){
-      try{
-        const params = new URLSearchParams(location.search);
-        const email = params.get('email');
-        if(email){
-          const g = document.getElementById('greeting');
-          g.textContent = `Thanks, ${email}. We’ll email you when early access opens.`;
-        }
-      }catch(_){}
-    })();
+  <noscript>
+    <div style="background:#fff7ed; border-top:1px solid #fed7aa; padding:1rem; text-align:center">
+      JavaScript is required to auto‑start the download. You can still click the “Download Starter Pack” button above.
+    </div>
+  </noscript>
 
-    // Optional auto-download when ?download=1 is present.
+  <script>
     (function(){
-      try{
-        const params = new URLSearchParams(location.search);
-        if(params.get('download') === '1'){
-          const a = document.getElementById('downloadBtn');
-          if(a){ setTimeout(()=>{ a.click(); }, 400); }
-        }
-      }catch(_){}
+      // ---- Configuration ----
+      // Replace this with your actual PDF/ZIP path once available:
+      var STARTER_URL = 'assets/starter-pack.pdf';
+      var btn = document.getElementById('downloadBtn');
+      var echo = document.getElementById('emailEcho');
+      var msg = document.getElementById('t-msg');
+
+      // If you don't have the PDF yet, keep a temporary asset so the button isn’t broken:
+      // Fallback to a small placeholder if the PDF isn’t ready.
+      function setDownloadHref(url){
+        if (btn) btn.href = url;
+      }
+      setDownloadHref(STARTER_URL);
+
+      // ---- Read query params from Kit redirect ----
+      var qs = new URLSearchParams(location.search);
+      var email = qs.get('email');
+      var auto = qs.get('download');
+
+      if (email && echo){
+        echo.textContent = 'Confirmed for: ' + email;
+      }
+
+      // Optional: friendlier message when coming from double opt-in flow
+      if (msg && auto === '1'){
+        msg.textContent = 'Thanks — your email is confirmed. Your download will start automatically.';
+      }
+
+      // ---- Auto-download when ?download=1 ----
+      function triggerDownload(){
+        try {
+          // We create a temporary anchor to ensure download prompt in most browsers.
+          var a = document.createElement('a');
+          a.href = STARTER_URL;
+          a.setAttribute('download', '');
+          a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(function(){ document.body.removeChild(a); }, 500);
+        } catch(_){}
+      }
+
+      if (auto === '1'){
+        // Small delay to let fonts/paint settle (prevents jank on mobile)
+        setTimeout(triggerDownload, 400);
+      }
+
+      // Also ensure the visible button points to the same URL
+      if (btn){
+        btn.addEventListener('click', function(){ /* you can add analytics here */ });
+      }
     })();
   </script>
 </body>
